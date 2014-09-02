@@ -1,17 +1,22 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.com.controle.virtual.entity;
 
-import java.util.Date;
-
-public class Usuario {
+/**
+ *
+ * @author filipe_soares
+ */
+public class Administrador {
 
     private Integer id;
     private String nome;
-    private String cpf;
-    private Date dtNascimento;
     private String login;
     private String senha;
 
-    public Usuario() {
+    public Administrador() {
 
     }
 
@@ -29,22 +34,6 @@ public class Usuario {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public Date getDtNascimento() {
-        return dtNascimento;
-    }
-
-    public void setDtNascimento(Date dtNascimento) {
-        this.dtNascimento = dtNascimento;
     }
 
     public String getLogin() {
