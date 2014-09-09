@@ -1,14 +1,31 @@
 package br.com.controle.virtual.entity;
 
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 
+@Entity
+@Table(name = "usuario")
 public class Usuario {
 
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
     private Integer id;
+    @Column(name = "nome")
     private String nome;
+    @Column(name = "cpf")
     private String cpf;
+    @Column(name = "dt_nascimento")
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dtNascimento;
+    @Column(name = "login")
     private String login;
+    @Column(name = "senha")
     private String senha;
 
     public Usuario() {
