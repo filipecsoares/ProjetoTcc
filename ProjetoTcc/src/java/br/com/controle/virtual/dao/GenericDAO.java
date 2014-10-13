@@ -3,30 +3,39 @@ package br.com.controle.virtual.dao;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 @SuppressWarnings("unchecked")
 public class GenericDAO<PK, T> {
 
     private EntityManager entityManager;
+    private EntityManagerFactory factory;
 
-    public GenericDAO(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public GenericDAO() {
+        factory = Persistence.createEntityManagerFactory("controlevirtual");
+        entityManager = factory.createEntityManager();
     }
 
     public T getById(PK pk) {
         return (T) entityManager.find(getTypeClass(), pk);
     }
 
-    public void save(T entity) {
-        entityManager.persist(entity);
+    public T save(T entity) {
+        entity = entityManager.merge(entity);
+        transaction();
+        return entity;
     }
 
-    public void update(T entity) {
-        entityManager.merge(entity);
+    public T update(T entity) {
+        entity = entityManager.merge(entity);
+        transaction();
+        return entity;
     }
 
     public void delete(T entity) {
         entityManager.remove(entity);
+        transaction();
     }
 
     public List<T> findAll() {
@@ -36,5 +45,11 @@ public class GenericDAO<PK, T> {
     private Class<?> getTypeClass() {
         Class<?> clazz = (Class<?>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
         return clazz;
+    }
+
+    private void transaction() {
+        entityManager.getTransaction().begin();
+        entityManager.getTransaction().commit();
+        factory.close();
     }
 }

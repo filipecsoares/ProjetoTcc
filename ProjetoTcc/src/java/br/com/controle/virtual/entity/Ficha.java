@@ -5,13 +5,14 @@
  */
 package br.com.controle.virtual.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author filipe_soares
  */
-public class Ficha {
+public class Ficha implements Serializable{
 
     private Integer id;
     private String objetivo;

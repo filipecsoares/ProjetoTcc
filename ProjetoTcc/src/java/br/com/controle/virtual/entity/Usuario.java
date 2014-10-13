@@ -1,6 +1,7 @@
 package br.com.controle.virtual.entity;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +11,7 @@ import javax.persistence.Temporal;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario {
+public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue
@@ -22,7 +23,7 @@ public class Usuario {
     private String cpf;
     @Column(name = "dt_nascimento")
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dtNascimento;
+    private Calendar dtNascimento;
     @Column(name = "login")
     private String login;
     @Column(name = "senha")
@@ -56,11 +57,11 @@ public class Usuario {
         this.cpf = cpf;
     }
 
-    public Date getDtNascimento() {
+    public Calendar getDtNascimento() {
         return dtNascimento;
     }
 
-    public void setDtNascimento(Date dtNascimento) {
+    public void setDtNascimento(Calendar dtNascimento) {
         this.dtNascimento = dtNascimento;
     }
 

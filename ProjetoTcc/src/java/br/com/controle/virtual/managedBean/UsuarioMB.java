@@ -1,5 +1,6 @@
 package br.com.controle.virtual.managedBean;
 
+import br.com.controle.virtual.dao.UsuarioDAO;
 import br.com.controle.virtual.entity.Usuario;
 import javax.faces.bean.ManagedBean;
 
@@ -10,22 +11,18 @@ import javax.faces.bean.ManagedBean;
 @ManagedBean
 public class UsuarioMB {
 
-    private Usuario bean;
-
     public UsuarioMB() {
-        bean = new Usuario();
     }
 
-    public Usuario getBean() {
-        return bean;
+    public Usuario save(Usuario usuario) {
+        UsuarioDAO dao = new UsuarioDAO();
+        usuario = dao.save(usuario);
+        return usuario;
     }
-
-    public void setBean(Usuario bean) {
-        this.bean = bean;
-    }
-
-    public Usuario save() {
-        bean.setNome(bean.getNome() + " Soares");
-        return bean;
+    
+    public Usuario update(Usuario usuario) {
+        UsuarioDAO dao = new UsuarioDAO();
+        usuario = dao.update(usuario);
+        return usuario;
     }
 }
