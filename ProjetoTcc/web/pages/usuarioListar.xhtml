@@ -10,13 +10,13 @@ and open the template in the editor.
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    <head>
+    <h:head>
         <title>Usuário</title>
-    </head>
-    <body>
+    </h:head>
+    <h:body>
         <h1>Usuário</h1>
         
-        <p:dataTable var="entity" value="#{usuarioController.listUsuario}">
+        <p:dataTable var="entity" value="#{usuarioMB.listFind}">
             <p:column headerText="Nome">
                 <h:outputText value="#{entity.nome}" />
             </p:column>
@@ -30,5 +30,5 @@ and open the template in the editor.
                 <h:outputText value="#{entity.login}" />
             </p:column>
         </p:dataTable>
-    </body>
+    </h:body>
 </html>

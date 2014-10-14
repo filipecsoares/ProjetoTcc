@@ -7,8 +7,9 @@ import java.util.Calendar;
 public class UsuarioTeste {
     public static void main(String[] args) {
         Usuario u = new Usuario();
-        u.setCpf("222");
-        u.setNome("222");
+        u.setId(1);
+        u.setCpf("333777");
+        u.setNome("333777");
         u.setDtNascimento(Calendar.getInstance());
         u.setLogin("222");
         u.setSenha("222");

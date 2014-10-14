@@ -50,6 +50,7 @@ public class GenericDAO<PK, T> {
     private void transaction() {
         entityManager.getTransaction().begin();
         entityManager.getTransaction().commit();
+        entityManager.close();
         factory.close();
     }
 }
