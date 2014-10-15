@@ -1,7 +1,7 @@
 package br.com.controle.virtual.entity;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +23,7 @@ public class Usuario implements Serializable {
     private String cpf;
     @Column(name = "dt_nascimento")
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Calendar dtNascimento;
+    private Date dtNascimento;
     @Column(name = "login")
     private String login;
     @Column(name = "senha")
@@ -57,11 +57,11 @@ public class Usuario implements Serializable {
         this.cpf = cpf;
     }
 
-    public Calendar getDtNascimento() {
+    public Date getDtNascimento() {
         return dtNascimento;
     }
 
-    public void setDtNascimento(Calendar dtNascimento) {
+    public void setDtNascimento(Date dtNascimento) {
         this.dtNascimento = dtNascimento;
     }
 

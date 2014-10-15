@@ -3,16 +3,16 @@ package teste;
 import br.com.controle.virtual.entity.Usuario;
 import br.com.controle.virtual.managedBean.UsuarioMB;
 import java.util.Calendar;
+import java.util.Date;
 
 public class UsuarioTeste {
     public static void main(String[] args) {
         Usuario u = new Usuario();
-        u.setId(1);
-        u.setCpf("333777");
-        u.setNome("333777");
-        u.setDtNascimento(Calendar.getInstance());
-        u.setLogin("222");
-        u.setSenha("222");
+        u.setCpf("111");
+        u.setNome("111");
+        u.setDtNascimento(new Date());
+        u.setLogin("11");
+        u.setSenha("11");
         
         UsuarioMB mb = new UsuarioMB();
         u = mb.update(u);

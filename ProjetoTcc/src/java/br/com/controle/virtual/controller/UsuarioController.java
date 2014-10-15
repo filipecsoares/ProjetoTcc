@@ -4,8 +4,10 @@ import br.com.controle.virtual.entity.Usuario;
 import br.com.controle.virtual.managedBean.UsuarioMB;
 import java.io.Serializable;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+@ManagedBean(name = "usuarioController")
 @SessionScoped
 public class UsuarioController implements Serializable {
 

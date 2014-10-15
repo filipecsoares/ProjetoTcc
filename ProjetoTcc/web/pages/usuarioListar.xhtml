@@ -16,7 +16,7 @@ and open the template in the editor.
     <h:body>
         <h1>Usuário</h1>
         
-        <p:dataTable var="entity" value="#{usuarioMB.listFind}">
+        <p:dataTable var="entity" value="#{usuarioController.listUsuario}">
             <p:column headerText="Nome">
                 <h:outputText value="#{entity.nome}" />
             </p:column>
@@ -24,7 +24,9 @@ and open the template in the editor.
                 <h:outputText value="#{entity.cpf}" />
             </p:column>
             <p:column headerText="Data de nascimento">
-                <h:outputText value="#{entity.dtNascimento}" />
+                <h:outputText value="#{entity.dtNascimento}">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:outputText>
             </p:column>
             <p:column headerText="Login">
                 <h:outputText value="#{entity.login}" />
