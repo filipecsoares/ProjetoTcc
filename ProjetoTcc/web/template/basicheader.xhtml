@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+    <body>
+        <ui:composition>
+            <p:tabMenu activeIndex="#{param.i}" >
+                <p:menuitem value="Inicio" outcome="/pages/telaPrincipal" icon="ui-icon-star">
+                    <f:param name="i" value="0" />
+                </p:menuitem>
+                <p:menuitem value="Usuário" outcome="/pages/usuarioListar" icon="ui-icon-search">
+                    <f:param name="i" value="1" />
+                </p:menuitem>
+            </p:tabMenu>
+        </ui:composition>
+    </body>
+</html>

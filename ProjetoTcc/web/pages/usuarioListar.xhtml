@@ -10,27 +10,27 @@ and open the template in the editor.
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Usuário</title>
-    </h:head>
+
     <h:body>
-        <h1>Usuário</h1>
-        
-        <p:dataTable var="entity" value="#{usuarioController.listUsuario}">
-            <p:column headerText="Nome">
-                <h:outputText value="#{entity.nome}" />
-            </p:column>
-            <p:column headerText="CPF">
-                <h:outputText value="#{entity.cpf}" />
-            </p:column>
-            <p:column headerText="Data de nascimento">
-                <h:outputText value="#{entity.dtNascimento}">
-                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                </h:outputText>
-            </p:column>
-            <p:column headerText="Login">
-                <h:outputText value="#{entity.login}" />
-            </p:column>
-        </p:dataTable>
+        <ui:composition template="/template/template.xhtml">
+            <ui:define name="content">
+                <p:dataTable var="entity" value="#{usuarioController.listUsuario}">
+                    <p:column headerText="Nome">
+                        <h:outputText value="#{entity.nome}" />
+                    </p:column>
+                    <p:column headerText="CPF">
+                        <h:outputText value="#{entity.cpf}" />
+                    </p:column>
+                    <p:column headerText="Data de nascimento">
+                        <h:outputText value="#{entity.dtNascimento}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Login">
+                        <h:outputText value="#{entity.login}" />
+                    </p:column>
+                </p:dataTable>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
