@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Login</title>
+        <style>
+            #divCentralizada {
+                position: absolute;
+                left: 40%;
+                top:30%;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div id="divCentralizada">
+            <h:form id="formLogin">
+                <p:panel id="login">
+                    <h:panelGrid id="idGrid" cellpadding="5">
+                        <p:messages id="messages" showDetail="true" autoUpdate="true" />
+                        <h:outputLabel for="usuario" value="Usuário:" style="font-weight:bold" />
+                        <p:inputText id="usuario" value="#{loginController.senha}" required="true" requiredMessage="Usuário obrigatório!"/>
+                        <h:outputLabel for="senha" value="Senha:" style="font-weight:bold" />
+                        <p:password id="senha" value="#{loginController.senha}" required="true" requiredMessage="Senha obrigatória!" />
+                        <p:commandButton value="Entrar" update="idGrid" icon="ui-icon-check" style="left: 25%" />
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+        </div>
+    </h:body>
+</html>

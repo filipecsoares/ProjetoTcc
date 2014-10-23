@@ -10,18 +10,13 @@ and open the template in the editor.
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Tela Principal</title>
-        <meta name="viewport" content="width=device-width"/>
-    </h:head>
     <h:body>
-        <p:tabMenu activeIndex="#{param.i}">
-            <p:menuitem value="Inicio" outcome="/pages/telaPrincipal" icon="ui-icon-star">
-                <f:param name="i" value="0" />
-            </p:menuitem>
-            <p:menuitem value="Usuário" outcome="/pages/usuarioListar" icon="ui-icon-search">
-                <f:param name="i" value="1" />
-            </p:menuitem>
-        </p:tabMenu>
+        <ui:composition template="/template/template.xhtml">
+            <ui:define name="content">
+                <p:panel header="Teste" style="width:50%">
+                    <p:button value="Teste" />
+                </p:panel>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>

@@ -18,7 +18,6 @@ public class UsuarioController implements Serializable {
     }
 
     public List<Usuario> getListUsuario() {
-        System.out.println("É:" + mb.getListFind());
         return mb.getListFind();
     }
 }

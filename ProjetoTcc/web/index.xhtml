@@ -7,13 +7,21 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:body>
-        <ui:composition template="template/template.xhtml">
-            <ui:define name="content">
-                #{hello.message}
-                <p:panel header="Teste" style="width:50%">
-                    <p:button value="Teste" />
-                </p:panel>
-            </ui:define>
-        </ui:composition>
+        <h:form id="formLogin">  
+            <p:dialog header="Realizar o Login" widgetVar="dlgNovo" resizable="false" id="dlgNovo"    
+                      showEffect="fade" hideEffect="explode" modal="true">
+
+                <p:growl id="growl" showDetail="true" sticky="true" />
+                <h:panelGrid id="pgNovo" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <h:outputText value="CPF" />    
+                    <p:inputText value="bla"/>  
+                    <h:outputText value="Senha" />    
+                    <p:inputText value="bla"/>  
+
+                </h:panelGrid>  
+                <p:separator />  
+                <p:commandButton value=" Logar" actionListener="#{loginController.entrar}" />  
+            </p:dialog>   
+        </h:form>
     </h:body>
 </html>
