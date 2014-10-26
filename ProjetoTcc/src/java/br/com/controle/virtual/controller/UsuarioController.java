@@ -12,12 +12,23 @@ import javax.faces.bean.SessionScoped;
 public class UsuarioController implements Serializable {
 
     private UsuarioMB mb;
+    private Usuario usuarioSearch;
 
     public UsuarioController() {
         mb = new UsuarioMB();
+        usuarioSearch = new Usuario();
     }
 
     public List<Usuario> getListUsuario() {
         return mb.getListFind();
     }
+
+    public Usuario getUsuarioSearch() {
+        return usuarioSearch;
+    }
+
+    public void setUsuarioSearch(Usuario usuarioSearch) {
+        this.usuarioSearch = usuarioSearch;
+    }
+    
 }

@@ -14,12 +14,7 @@ and open the template in the editor.
     <h:body>
         <ui:composition template="/template/template.xhtml">
             <ui:define name="content">
-                <p:panel>
-                    <h:panelGrid columns="2">
-                    <p:inputText title="Nome:" value="#{usuarioController.usuarioSearch.nome}" />
-                    </h:panelGrid>
-                </p:panel>
-                <p:dataTable var="entity" value="#{usuarioController.listUsuario}" paginator="true" paginatorPosition="bottom">
+                <p:dataTable var="entity" value="#{usuarioController.listUsuario}">
                     <p:column headerText="Nome">
                         <h:outputText value="#{entity.nome}" />
                     </p:column>
