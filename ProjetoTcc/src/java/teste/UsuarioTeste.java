@@ -8,11 +8,11 @@ import java.util.Date;
 public class UsuarioTeste {
     public static void main(String[] args) {
         Usuario u = new Usuario();
-        u.setCpf("222");
-        u.setNome("222");
+        u.setCpf("17");
+        u.setNome("17");
         u.setDtNascimento(new Date());
-        u.setLogin("222");
-        u.setSenha("222");
+        u.setLogin("97");
+        u.setSenha("97");
         
         UsuarioMB mb = new UsuarioMB();
         u = mb.update(u);

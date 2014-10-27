@@ -16,10 +16,21 @@ and open the template in the editor.
             <ui:define name="content">
                 <p:panel>
                     <h:panelGrid columns="2">
-                    <p:inputText title="Nome:" value="#{usuarioController.usuarioSearch.nome}" />
+                        <h:outputLabel value="Nome" />
+                        <p:spacer/>
+                        <p:inputText title="Nome" value="#{usuarioController.usuarioSearch.nome}" />
+                        <p:commandButton icon="ui-icon-search" value="Pesquisar" oncomplete="#{usuarioController.pesquisaUsuarioPorNome}" update="formUsuario" />
                     </h:panelGrid>
                 </p:panel>
-                <p:dataTable var="entity" value="#{usuarioController.listUsuario}" paginator="true" paginatorPosition="bottom">
+                <h:form>
+                <p:dataTable id="formUsuario" var="entity" widgetVar="usuario" value="#{usuarioController.listUsuario}" paginator="true" paginatorPosition="bottom" 
+                             filteredValue="#{usuarioController.listUsuario}" rows="10">
+                    <f:facet name="header">
+                        <p:outputPanel>
+                            <h:outputText value="Search all fields:" />
+                            <p:inputText id="globalFilter" onkeyup="PF('usuario').filter()" style="width:150px" placeholder="Enter keyword"/>
+                        </p:outputPanel>
+                    </f:facet>    
                     <p:column headerText="Nome">
                         <h:outputText value="#{entity.nome}" />
                     </p:column>
@@ -34,7 +45,12 @@ and open the template in the editor.
                     <p:column headerText="Login">
                         <h:outputText value="#{entity.login}" />
                     </p:column>
+                    <p:column headerText="Ações" width="7%">
+                        <p:commandButton icon="ui-icon-pencil" action="#{usuarioController.pesquisaUsuarioPorNome}" update="formUsuario" />
+                        <p:commandButton icon="ui-icon-close" action="#{usuarioController.pesquisaUsuarioPorNome}" update="formUsuario" />
+                    </p:column>
                 </p:dataTable>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

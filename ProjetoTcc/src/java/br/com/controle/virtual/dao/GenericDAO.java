@@ -1,10 +1,13 @@
 package br.com.controle.virtual.dao;
 
+import br.com.controle.virtual.entity.Usuario;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 @SuppressWarnings("unchecked")
 public class GenericDAO<PK, T> {
@@ -40,6 +43,11 @@ public class GenericDAO<PK, T> {
 
     public List<T> findAll() {
         return entityManager.createQuery(("FROM " + getTypeClass().getName())).getResultList();
+    }
+
+    public List<T> find(String nome) {
+        Session session = (Session) entityManager.getDelegate();
+        return session.createCriteria(Usuario.class).add(Restrictions.eq("nome", nome)).list();
     }
 
     private Class<?> getTypeClass() {
