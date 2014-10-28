@@ -14,43 +14,42 @@ and open the template in the editor.
     <h:body>
         <ui:composition template="/template/template.xhtml">
             <ui:define name="content">
-                <p:panel>
+                <p:panel id="panelSearch">
                     <h:panelGrid columns="2">
                         <h:outputLabel value="Nome" />
                         <p:spacer/>
-                        <p:inputText title="Nome" value="#{usuarioController.usuarioSearch.nome}" />
-                        <p:commandButton icon="ui-icon-search" value="Pesquisar" oncomplete="#{usuarioController.pesquisaUsuarioPorNome}" update="formUsuario" />
+                        <p:inputText id="nome" title="Nome" value="#{usuarioController.usuarioSearch.nome}" />
+                        <p:commandButton icon="ui-icon-search" value="Pesquisar" action="#{usuarioController.pesquisaUsuarioPorNome}" update="formUsuario" process="@this" />
                     </h:panelGrid>
                 </p:panel>
-                <h:form>
-                <p:dataTable id="formUsuario" var="entity" widgetVar="usuario" value="#{usuarioController.listUsuario}" paginator="true" paginatorPosition="bottom" 
-                             filteredValue="#{usuarioController.listUsuario}" rows="10">
-                    <f:facet name="header">
-                        <p:outputPanel>
-                            <h:outputText value="Search all fields:" />
-                            <p:inputText id="globalFilter" onkeyup="PF('usuario').filter()" style="width:150px" placeholder="Enter keyword"/>
-                        </p:outputPanel>
-                    </f:facet>    
-                    <p:column headerText="Nome">
-                        <h:outputText value="#{entity.nome}" />
-                    </p:column>
-                    <p:column headerText="CPF">
-                        <h:outputText value="#{entity.cpf}" />
-                    </p:column>
-                    <p:column headerText="Data de nascimento">
-                        <h:outputText value="#{entity.dtNascimento}">
-                            <f:convertDateTime pattern="dd/MM/yyyy" />
-                        </h:outputText>
-                    </p:column>
-                    <p:column headerText="Login">
-                        <h:outputText value="#{entity.login}" />
-                    </p:column>
-                    <p:column headerText="Ações" width="7%">
-                        <p:commandButton icon="ui-icon-pencil" action="#{usuarioController.pesquisaUsuarioPorNome}" update="formUsuario" />
-                        <p:commandButton icon="ui-icon-close" action="#{usuarioController.pesquisaUsuarioPorNome}" update="formUsuario" />
-                    </p:column>
-                </p:dataTable>
+                <h:form id="formUsuario" prependId="false">
+                    <p:dataTable id="tabelaUsuario" var="entity" widgetVar="usuario" value="#{usuarioController.listUsuario}" paginator="true" paginatorPosition="bottom" 
+                                 rows="10">
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{entity.nome}" />
+                        </p:column>
+                        <p:column headerText="CPF">
+                            <h:outputText value="#{entity.cpf}" />
+                        </p:column>
+                        <p:column headerText="Data de nascimento">
+                            <h:outputText value="#{entity.dtNascimento}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Login">
+                            <h:outputText value="#{entity.login}" />
+                        </p:column>
+                        <p:column headerText="Ações" width="7%">
+                            <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('usuarioEdit').show()">
+                                <f:setPropertyActionListener value="#{entity}" target="#{usuarioController.usuarioSelecionado}" />
+                            </p:commandButton>
+                            <p:commandButton icon="ui-icon-close" action="#{usuarioController.delete}" update=":formUsuario" />
+                        </p:column>
+                    </p:dataTable>
+
+                    
                 </h:form>
+                <ui:include src="/pages/usuarioCadastrar.xhtml" />
             </ui:define>
         </ui:composition>
     </h:body>

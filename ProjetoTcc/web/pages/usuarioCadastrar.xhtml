@@ -10,8 +10,22 @@ and open the template in the editor.
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    
-    <p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
-        <h:outputText value="This is a Modal Dialog." />
+
+    <p:dialog id="dialog" header="Cadastrar Usuário" widgetVar="usuarioEdit" modal="true" showEffect="fade" hideEffect="explode">
+        <p:outputPanel id="panelEdit" style="text-align: center;">
+            <p:panelGrid columns="2" columnClasses="label,value">
+                <h:outputText value="Nome:" />
+                <h:inputText value="#{usuarioController.usuarioSelecionado.nome}" />
+                <h:outputText value="CPF:" />
+                <h:inputText value="#{usuarioController.usuarioSelecionado.cpf}" />
+                <h:outputText value="Login:" />
+                <h:inputText value="#{usuarioController.usuarioSelecionado.login}" />
+                <h:outputText value="Senha:" />
+                <h:inputText value="#{usuarioController.usuarioSelecionado.senha}" />
+                <h:outputText value="Data de nascimento:" />
+                <h:inputText value="#{usuarioController.usuarioSelecionado.dtNascimento}" />
+            </p:panelGrid>
+            <p:commandButton value="Salvar" icon="ui-icon-disk" action="#{usuarioController.save}" update=":formUsuario" />
+        </p:outputPanel>
     </p:dialog>
 </html>

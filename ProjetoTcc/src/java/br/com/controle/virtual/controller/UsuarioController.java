@@ -15,6 +15,7 @@ public class UsuarioController implements Serializable {
 
     private UsuarioMB mb;
     private Usuario usuarioSearch;
+    private Usuario usuarioSelecionado;
     private List<Usuario> listUsuario;
 
     public UsuarioController() {
@@ -39,10 +40,26 @@ public class UsuarioController implements Serializable {
         this.listUsuario = listUsuario;
     }
 
-    public String getPesquisaUsuarioPorNome() {
+    public Usuario getUsuarioSelecionado() {
+        return usuarioSelecionado;
+    }
+
+    public void setUsuarioSelecionado(Usuario usuarioSelecionado) {
+        this.usuarioSelecionado = usuarioSelecionado;
+    }
+
+    public String pesquisaUsuarioPorNome() {
         if (usuarioSearch.getNome() != null && !usuarioSearch.getNome().equals("")) {
             listUsuario = mb.getFind(usuarioSearch.getNome());
         }
         return "";
+    }
+    
+    public void delete(){
+        
+    }
+    
+    public void save(){
+        
     }
 }
