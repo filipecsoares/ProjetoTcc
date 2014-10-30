@@ -11,21 +11,26 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-    <p:dialog id="dialog" header="Cadastrar Usuário" widgetVar="usuarioEdit" modal="true" height="200" width="400" showEffect="fade" hideEffect="explode" resizable="false" draggable="false" appendTo="@(body)">
-        <p:outputPanel id="panelEdit" style="text-align: center;">
-            <p:panelGrid columns="2" columnClasses="label,value">
-                <h:outputText value="Nome:" />
-                <h:inputText value="#{usuarioController.usuarioSelecionado.nome}" />
-                <h:outputText value="CPF:" />
-                <h:inputText value="#{usuarioController.usuarioSelecionado.cpf}" />
-                <h:outputText value="Login:" />
-                <h:inputText value="#{usuarioController.usuarioSelecionado.login}" />
-                <h:outputText value="Senha:" />
-                <h:inputText value="#{usuarioController.usuarioSelecionado.senha}" />
-                <h:outputText value="Data de nascimento:" />
-                <h:inputText value="#{usuarioController.usuarioSelecionado.dtNascimento}" />
-            </p:panelGrid>
-            <p:commandButton value="Salvar" icon="ui-icon-disk" action="#{usuarioController.save}" update=":formUsuario" />
-        </p:outputPanel>
+    <p:dialog id="dialog" header="Cadastrar Usuário" widgetVar="usuarioEdit" modal="true" height="250" width="400" showEffect="fade" hideEffect="explode" resizable="false" draggable="false" appendTo="@(body)">
+        <h:form id="formEdit" prependId="false">
+            <p:outputPanel id="panelEdit" style="text-align: center;">
+                <p:messages id="messages" />
+                <p:panelGrid columns="2" columnClasses="label,value">
+                    <h:outputText value="Nome:" />
+                    <h:inputText value="#{usuarioController.usuarioSelecionado.nome}" />
+                    <h:outputText value="CPF:" />
+                    <h:inputText value="#{usuarioController.usuarioSelecionado.cpf}" />
+                    <h:outputText value="Login:" />
+                    <h:inputText value="#{usuarioController.usuarioSelecionado.login}" />
+                    <h:outputText value="Senha:" />
+                    <h:inputText value="#{usuarioController.usuarioSelecionado.senha}" />
+                    <h:outputText value="Data de nascimento:" />
+                    <h:inputText value="#{usuarioController.usuarioSelecionado.dtNascimento}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:inputText>
+                </p:panelGrid>
+                <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{usuarioController.save}" update=":formUsuario :formEdit" />
+            </p:outputPanel>
+        </h:form>
     </p:dialog>
 </html>

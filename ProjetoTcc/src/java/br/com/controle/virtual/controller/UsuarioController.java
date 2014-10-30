@@ -4,9 +4,11 @@ import br.com.controle.virtual.entity.Usuario;
 import br.com.controle.virtual.managedBean.UsuarioMB;
 import java.io.Serializable;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean(name = "usuarioController")
 @SessionScoped
@@ -54,12 +56,15 @@ public class UsuarioController implements Serializable {
         }
         return "";
     }
-    
-    public void delete(){
-        
+
+    public void delete() {
+
     }
-    
-    public void save(){
-        
+
+    public void save() {
+        if(mb.save(usuarioSelecionado) != null)
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo com sucesso", "Usuário salvo"));
+        else
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro o salvar", "Erro ao salvar o usuário"));
     }
 }
