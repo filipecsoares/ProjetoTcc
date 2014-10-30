@@ -25,12 +25,8 @@ public class GenericDAO<PK, T> {
     }
 
     public T save(T entity) {
-        entityManager.getTransaction().begin();
-        System.out.println(entityManager.getTransaction().isActive());
-        entity = entityManager.merge(entity);
-        entityManager.getTransaction().commit();
-        entityManager.close();
-        factory.close();
+        entityManager.persist(entity);
+        transaction();
         return entity;
     }
 

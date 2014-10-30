@@ -13,8 +13,8 @@ and open the template in the editor.
 
     <p:dialog id="dialog" header="Cadastrar Usuário" widgetVar="usuarioEdit" modal="true" height="250" width="400" showEffect="fade" hideEffect="explode" resizable="false" draggable="false" appendTo="@(body)">
         <h:form id="formEdit" prependId="false">
+            <p:messages id="messages" autoUpdate="true" closable="true" />
             <p:outputPanel id="panelEdit" style="text-align: center;">
-                <p:messages id="messages" />
                 <p:panelGrid columns="2" columnClasses="label,value">
                     <h:outputText value="Nome:" />
                     <h:inputText value="#{usuarioController.usuarioSelecionado.nome}" />
@@ -29,7 +29,7 @@ and open the template in the editor.
                         <f:convertDateTime pattern="dd/MM/yyyy" />
                     </h:inputText>
                 </p:panelGrid>
-                <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{usuarioController.save}" update=":formUsuario :formEdit" />
+                <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{usuarioController.saveOrUpdate()}" update=":formUsuario :formEdit" />
             </p:outputPanel>
         </h:form>
     </p:dialog>

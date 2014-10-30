@@ -24,6 +24,7 @@ public class UsuarioController implements Serializable {
         mb = new UsuarioMB();
         usuarioSearch = new Usuario();
         listUsuario = mb.getListFind();
+        usuarioSelecionado = new Usuario();
     }
 
     public Usuario getUsuarioSearch() {
@@ -61,10 +62,27 @@ public class UsuarioController implements Serializable {
 
     }
 
-    public void save() {
-        if(mb.save(usuarioSelecionado) != null)
+    private void save() {
+        if (mb.save(usuarioSelecionado) != null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo com sucesso", "Usuário salvo"));
-        else
+        } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro o salvar", "Erro ao salvar o usuário"));
+        }
+    }
+
+    private void update() {
+        if (mb.update(usuarioSelecionado) != null) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo com sucesso", "Usuário salvo"));
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro o salvar", "Erro ao salvar o usuário"));
+        }
+    }
+
+    public void saveOrUpdate() {
+        if (usuarioSelecionado.getId() == null || usuarioSelecionado.getId().equals(0)) {
+            save();
+        } else {
+            update();
+        }
     }
 }
