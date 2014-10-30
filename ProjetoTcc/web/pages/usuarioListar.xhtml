@@ -40,14 +40,12 @@ and open the template in the editor.
                             <h:outputText value="#{entity.login}" />
                         </p:column>
                         <p:column headerText="Ações" width="7%">
-                            <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('usuarioEdit').show()">
+                            <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('usuarioEdit').show();">
                                 <f:setPropertyActionListener value="#{entity}" target="#{usuarioController.usuarioSelecionado}" />
                             </p:commandButton>
                             <p:commandButton icon="ui-icon-close" action="#{usuarioController.delete}" update=":formUsuario" />
                         </p:column>
                     </p:dataTable>
-
-                    
                 </h:form>
                 <ui:include src="/pages/usuarioCadastrar.xhtml" />
             </ui:define>

@@ -11,7 +11,7 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-    <p:dialog id="dialog" header="Cadastrar Usuário" widgetVar="usuarioEdit" modal="true" showEffect="fade" hideEffect="explode">
+    <p:dialog id="dialog" header="Cadastrar Usuário" widgetVar="usuarioEdit" modal="true" height="200" width="400" showEffect="fade" hideEffect="explode" resizable="false" draggable="false" appendTo="@(body)">
         <p:outputPanel id="panelEdit" style="text-align: center;">
             <p:panelGrid columns="2" columnClasses="label,value">
                 <h:outputText value="Nome:" />
