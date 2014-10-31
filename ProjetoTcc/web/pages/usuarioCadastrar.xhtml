@@ -18,12 +18,12 @@ and open the template in the editor.
                 <p:panelGrid columns="2" columnClasses="label,value">
                     <h:outputText value="Nome:" />
                     <h:inputText value="#{usuarioController.usuarioSelecionado.nome}" />
-                    <h:outputText value="CPF:" />
-                    <h:inputText value="#{usuarioController.usuarioSelecionado.cpf}" />
+                    <p:outputLabel value="CPF:" for="cpf"/>
+                    <p:inputMask id="cpf" value="#{usuarioController.usuarioSelecionado.cpf}" mask="999.999.999-99"/>
                     <h:outputText value="Login:" />
                     <h:inputText value="#{usuarioController.usuarioSelecionado.login}" />
-                    <h:outputText value="Senha:" />
-                    <h:inputText value="#{usuarioController.usuarioSelecionado.senha}" />
+                    <p:outputLabel value="Senha:" for="senha"/>
+                    <h:inputSecret id="senha" value="#{usuarioController.usuarioSelecionado.senha}" />
                     <h:outputText value="Data de nascimento:" />
                     <h:inputText value="#{usuarioController.usuarioSelecionado.dtNascimento}">
                         <f:convertDateTime pattern="dd/MM/yyyy" />
