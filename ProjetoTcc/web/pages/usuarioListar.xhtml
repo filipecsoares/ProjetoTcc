@@ -20,11 +20,11 @@ and open the template in the editor.
                         <p:spacer/>
                         <p:inputText id="nome" title="Nome" value="#{usuarioController.usuarioSearch.nome}" />
                         <p:commandButton icon="ui-icon-search" value="Pesquisar" action="#{usuarioController.pesquisaUsuarioPorNome}" update="formUsuario" process="@this" />
-                        <p:commandButton update=":dialog" value="Novo Usuário" icon="ui-icon-plus" oncomplete="PF('usuarioEdit').show();" style="position: absolute; top: 40px; right: 15px">
-                            <f:setPropertyActionListener value="#{usuarioController.usuarioSelecionado}" target="#{usuarioController.usuarioSelecionado}" />
+                        <p:commandButton update=":dialog :formEdit" value="Novo Usuário" icon="ui-icon-plus" oncomplete="PF('usuarioEdit').show();" style="position: absolute; top: 40px; right: 15px">
+                            <f:setPropertyActionListener value="#{usuarioController.novo}" target="#{usuarioController.usuarioSelecionado}" />
                         </p:commandButton>
                     </h:panelGrid>
-                </p:panel>
+                   </p:panel>
                 <h:form id="formUsuario" prependId="false">
                     <p:dataTable id="tabelaUsuario" var="entity" widgetVar="usuario" value="#{usuarioController.listUsuario}" paginator="true" paginatorPosition="bottom" 
                                  rows="10">
@@ -42,7 +42,6 @@ and open the template in the editor.
                         <p:column headerText="Login">
                             <h:outputText value="#{entity.login}" />
                         </p:column>
-
                         <p:column headerText="Ações" width="7%">
                             <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('usuarioEdit').show();">
                                 <f:setPropertyActionListener value="#{entity}" target="#{usuarioController.usuarioSelecionado}" />
@@ -56,7 +55,6 @@ and open the template in the editor.
                                 <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                             </p:confirmDialog>
                         </p:column>
-
                     </p:dataTable>
                 </h:form>
                 <ui:include src="/pages/usuarioCadastrar.xhtml" />

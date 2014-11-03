@@ -12,8 +12,8 @@ import org.hibernate.criterion.Restrictions;
 @SuppressWarnings("unchecked")
 public class GenericDAO<PK, T> {
 
-    private EntityManager entityManager;
-    private EntityManagerFactory factory;
+    protected EntityManager entityManager;
+    protected EntityManagerFactory factory;
 
     public GenericDAO() {
         factory = Persistence.createEntityManagerFactory("controlevirtual");
@@ -21,18 +21,35 @@ public class GenericDAO<PK, T> {
     }
 
     public T getById(PK pk) {
-        return (T) entityManager.find(getTypeClass(), pk);
+        T entity;
+        factory = Persistence.createEntityManagerFactory("controlevirtual");
+        entityManager = factory.createEntityManager();
+        entityManager.getTransaction().begin();
+        entity = (T) entityManager.find(getTypeClass(), pk);
+        entityManager.close();
+        factory.close();
+        return entity;
     }
 
     public T save(T entity) {
+        factory = Persistence.createEntityManagerFactory("controlevirtual");
+        entityManager = factory.createEntityManager();
+        entityManager.getTransaction().begin();
         entityManager.persist(entity);
-        transaction();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        factory.close();
         return entity;
     }
 
     public T update(T entity) {
+        factory = Persistence.createEntityManagerFactory("controlevirtual");
+        entityManager = factory.createEntityManager();
+        entityManager.getTransaction().begin();
         entity = entityManager.merge(entity);
-        transaction();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        factory.close();
         return entity;
     }
 
@@ -42,12 +59,24 @@ public class GenericDAO<PK, T> {
     }
 
     public List<T> findAll() {
-        return entityManager.createQuery(("FROM " + getTypeClass().getName())).getResultList();
+        List<T> list;
+        factory = Persistence.createEntityManagerFactory("controlevirtual");
+        entityManager = factory.createEntityManager();
+        list = entityManager.createQuery(("FROM " + getTypeClass().getName())).getResultList();
+        entityManager.close();
+        factory.close();
+        return list;
     }
 
     public List<T> find(String nome) {
+        List<T> list;
+        factory = Persistence.createEntityManagerFactory("controlevirtual");
+        entityManager = factory.createEntityManager();
         Session session = (Session) entityManager.getDelegate();
-        return session.createCriteria(Usuario.class).add(Restrictions.eq("nome", nome)).list();
+        list = session.createCriteria(Usuario.class).add(Restrictions.eq("nome", nome)).list();
+        entityManager.close();
+        factory.close();
+        return list;
     }
 
     private Class<?> getTypeClass() {

@@ -3,6 +3,7 @@ package br.com.controle.virtual.controller;
 import br.com.controle.virtual.entity.Usuario;
 import br.com.controle.virtual.managedBean.UsuarioMB;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -24,7 +25,14 @@ public class UsuarioController implements Serializable {
         mb = new UsuarioMB();
         usuarioSearch = new Usuario();
         listUsuario = mb.getListFind();
-        usuarioSelecionado = new Usuario();
+    }
+
+    public Date getMaxDate() {
+        return new Date();
+    }
+
+    public Usuario getNovo() {
+        return new Usuario();
     }
 
     public Usuario getUsuarioSearch() {
@@ -58,8 +66,14 @@ public class UsuarioController implements Serializable {
         return "";
     }
 
+    public void atualizaListaUsuario() {
+        listUsuario = mb.getListFind();
+    }
+
     public void delete() {
-        mb.delete(usuarioSelecionado);
+        if (usuarioSelecionado != null && usuarioSelecionado.getId() != null) {
+            mb.delete(usuarioSelecionado);
+        }
     }
 
     private void save() {
@@ -84,5 +98,6 @@ public class UsuarioController implements Serializable {
         } else {
             update();
         }
+        atualizaListaUsuario();
     }
 }
