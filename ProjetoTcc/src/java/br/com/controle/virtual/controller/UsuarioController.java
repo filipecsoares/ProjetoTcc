@@ -59,7 +59,7 @@ public class UsuarioController implements Serializable {
     }
 
     public void delete() {
-
+        mb.delete(usuarioSelecionado);
     }
 
     private void save() {

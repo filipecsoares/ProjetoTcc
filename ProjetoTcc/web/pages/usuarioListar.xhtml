@@ -24,7 +24,7 @@ and open the template in the editor.
                             <f:setPropertyActionListener value="#{usuarioController.usuarioSelecionado}" target="#{usuarioController.usuarioSelecionado}" />
                         </p:commandButton>
                     </h:panelGrid>
-                   </p:panel>
+                </p:panel>
                 <h:form id="formUsuario" prependId="false">
                     <p:dataTable id="tabelaUsuario" var="entity" widgetVar="usuario" value="#{usuarioController.listUsuario}" paginator="true" paginatorPosition="bottom" 
                                  rows="10">
@@ -42,12 +42,21 @@ and open the template in the editor.
                         <p:column headerText="Login">
                             <h:outputText value="#{entity.login}" />
                         </p:column>
+
                         <p:column headerText="Ações" width="7%">
                             <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('usuarioEdit').show();">
                                 <f:setPropertyActionListener value="#{entity}" target="#{usuarioController.usuarioSelecionado}" />
                             </p:commandButton>
-                            <p:commandButton icon="ui-icon-close" action="#{usuarioController.delete}" update=":formUsuario" />
+                            <p:commandButton icon="ui-icon-close" action="#{usuarioController.delete()}" update=":formUsuario" >
+                                <p:confirm header="Confirmação" message="Deseja excluir?" icon="ui-icon-alert" />
+                                <f:setPropertyActionListener value="#{entity}" target="#{usuarioController.usuarioSelecionado}" />
+                            </p:commandButton>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
                         </p:column>
+
                     </p:dataTable>
                 </h:form>
                 <ui:include src="/pages/usuarioCadastrar.xhtml" />

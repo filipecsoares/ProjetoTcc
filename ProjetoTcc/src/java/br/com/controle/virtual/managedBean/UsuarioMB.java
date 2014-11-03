@@ -31,4 +31,8 @@ public class UsuarioMB {
         List<Usuario> lista = dao.find(nome);
         return lista;
     }
+    
+    public void delete(Usuario usuario){
+        dao.delete(usuario);
+    }   
 }
