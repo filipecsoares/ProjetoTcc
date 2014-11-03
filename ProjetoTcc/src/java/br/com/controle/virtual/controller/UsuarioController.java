@@ -73,6 +73,7 @@ public class UsuarioController implements Serializable {
     public void delete() {
         if (usuarioSelecionado != null && usuarioSelecionado.getId() != null) {
             mb.delete(usuarioSelecionado);
+            atualizaListaUsuario();
         }
     }
 
