@@ -14,17 +14,19 @@ and open the template in the editor.
     <h:body>
         <ui:composition template="/template/template.xhtml">
             <ui:define name="content">
-                <p:panel id="panelSearch">
-                    <h:panelGrid columns="2">
+                <p:panel id="panelSearch" header="Usuário">
+                    <h:form>
+                    <h:panelGrid id="panelGrid" columns="2">
                         <h:outputLabel value="Nome" />
                         <p:spacer/>
-                        <p:inputText id="nome" title="Nome" value="#{usuarioController.usuarioSearch.nome}" />
-                        <p:commandButton icon="ui-icon-search" value="Pesquisar" action="#{usuarioController.pesquisaUsuarioPorNome}" update="formUsuario" process="@this" />
-                        <p:commandButton update=":dialog :formEdit" value="Novo Usuário" icon="ui-icon-plus" oncomplete="PF('usuarioEdit').show();" style="position: absolute; top: 40px; right: 15px">
-                            <f:setPropertyActionListener value="#{usuarioController.novo}" target="#{usuarioController.usuarioSelecionado}" />
-                        </p:commandButton>
+                        <p:inputText title="Nome" value="#{usuarioController.usuarioSearch.nome}" />
+                        <p:commandButton icon="ui-icon-search" value="Pesquisar" actionListener="#{usuarioController.pesquisaUsuarioPorNome}" update=":formUsuario :panelSearch" />
                     </h:panelGrid>
-                   </p:panel>
+                    </h:form>
+                    <p:commandButton update=":dialog :formEdit" value="Novo Usuário" icon="ui-icon-plus" oncomplete="PF('usuarioEdit').show();" style="position: absolute; top: 70px; right: 15px">
+                        <f:setPropertyActionListener value="#{usuarioController.novo}" target="#{usuarioController.usuarioSelecionado}" />
+                    </p:commandButton>
+                </p:panel>
                 <h:form id="formUsuario" prependId="false">
                     <p:dataTable id="tabelaUsuario" var="entity" widgetVar="usuario" value="#{usuarioController.listUsuario}" paginator="true" paginatorPosition="bottom" 
                                  rows="10">

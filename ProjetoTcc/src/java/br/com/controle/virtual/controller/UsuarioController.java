@@ -18,6 +18,7 @@ public class UsuarioController implements Serializable {
 
     private UsuarioMB mb;
     private Usuario usuarioSearch;
+    private String nome;
     private Usuario usuarioSelecionado;
     private List<Usuario> listUsuario;
 
@@ -33,6 +34,14 @@ public class UsuarioController implements Serializable {
 
     public Usuario getNovo() {
         return new Usuario();
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Usuario getUsuarioSearch() {

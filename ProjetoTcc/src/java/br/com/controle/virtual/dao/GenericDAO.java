@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 @SuppressWarnings("unchecked")
@@ -73,7 +74,7 @@ public class GenericDAO<PK, T> {
         factory = Persistence.createEntityManagerFactory("controlevirtual");
         entityManager = factory.createEntityManager();
         Session session = (Session) entityManager.getDelegate();
-        list = session.createCriteria(Usuario.class).add(Restrictions.eq("nome", nome)).list();
+        list = session.createCriteria(Usuario.class).add(Restrictions.ilike("nome", nome, MatchMode.ANYWHERE)).list();
         entityManager.close();
         factory.close();
         return list;
