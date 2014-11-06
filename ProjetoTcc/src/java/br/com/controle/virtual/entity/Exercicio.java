@@ -1,7 +1,6 @@
 package br.com.controle.virtual.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,41 +8,29 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- * @author Rafael
- */
 @Entity
-@Table(name = "grupomuscular")
-public class GrupoMuscular implements Serializable{
-
+@Table(name = "Exercicio")
+public class Exercicio implements Serializable {
+    
     @Id
     @GeneratedValue
-    @Column(name = "id")
+    @Column
     private Integer id;
-    @Column(name = "nome")
+    @Column
     private String nome;
 
-    @OneToMany(mappedBy = "grupo")
-    private List<Exercicio> exercicio;
+    private String imagem;
+
+
+    @ManyToOne
+    private GrupoMuscular grupo;
     
-    public GrupoMuscular(){
-        exercicio = new ArrayList<>();
-    }
-
-    public List<Exercicio> getExercicio() {
-        return exercicio;
-    }
-
-    public void setExercicio(List<Exercicio> exercicio) {
-        this.exercicio = exercicio;
+    public Exercicio(){
+        
     }
     
-
-
     public Integer getId() {
         return id;
     }
@@ -60,4 +47,19 @@ public class GrupoMuscular implements Serializable{
         this.nome = nome;
     }
 
+    public GrupoMuscular getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(GrupoMuscular grupo) {
+        this.grupo = grupo;
+    }
+    
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
 }
