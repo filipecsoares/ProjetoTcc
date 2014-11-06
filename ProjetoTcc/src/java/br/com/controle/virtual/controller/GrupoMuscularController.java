@@ -1,9 +1,7 @@
 package br.com.controle.virtual.controller;
 
 import br.com.controle.virtual.entity.GrupoMuscular;
-import br.com.controle.virtual.entity.Usuario;
 import br.com.controle.virtual.managedBean.GrupoMuscularMB;
-import br.com.controle.virtual.managedBean.UsuarioMB;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -70,7 +68,7 @@ public class GrupoMuscularController implements Serializable {
     }
 
     public String pesquisaGrupoPorNome() {
-        if (grupoSearch.getNome() != null && !grupoSearch.getNome().equals("")) {
+        if (grupoSearch.getNome() != null) {
             listGrupo = mb.getFind(grupoSearch.getNome());
         }
         return "";
@@ -78,6 +76,10 @@ public class GrupoMuscularController implements Serializable {
 
     public void atualizaListaGrupo() {
         listGrupo = mb.getListFind();
+    }
+    
+    public List<GrupoMuscular> listGrupo(){
+        return mb.getListFind();
     }
 
     public void delete() {

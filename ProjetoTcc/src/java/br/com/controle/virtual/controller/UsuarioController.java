@@ -69,7 +69,7 @@ public class UsuarioController implements Serializable {
     }
 
     public String pesquisaUsuarioPorNome() {
-        if (usuarioSearch.getNome() != null && !usuarioSearch.getNome().equals("")) {
+        if (usuarioSearch.getNome() != null) {
             listUsuario = mb.getFind(usuarioSearch.getNome());
         }
         return "";
