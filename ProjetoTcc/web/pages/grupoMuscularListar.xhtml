@@ -14,18 +14,20 @@ and open the template in the editor.
     <h:body>
         <ui:composition template="/template/template.xhtml">
             <ui:define name="content">
-                <p:panel id="panelSearch">
-                    <h:panelGrid columns="2">
-                        <h:outputLabel value="Nome" />
-                        <p:spacer/>
-                        <p:inputText id="nome" title="Nome" value="#{grupoController.grupoSearch.nome}" />
-                        <p:commandButton icon="ui-icon-search" value="Pesquisar" action="#{grupoController.pesquisaGrupoPorNome()}" update="formGrupo
-                                         " process="@this" />
-                        <p:commandButton update=":dialog :formEdit" value="Novo Grupo" icon="ui-icon-plus" oncomplete="PF('grupoEdit').show();" style="position: absolute; top: 40px; right: 15px">
-                            <f:setPropertyActionListener value="#{grupoController.novo}" target="#{grupoController.grupoSelecionado}" />
-                        </p:commandButton>
-                    </h:panelGrid>
-                   </p:panel>
+                <p:panel id="panelSearch" header="Grupo">
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Nome" />
+                            <p:spacer/>
+                            <p:inputText id="nome" title="Nome" value="#{grupoController.grupoSearch.nome}" />
+                            <p:commandButton icon="ui-icon-search" value="Pesquisar" actionListener="#{grupoController.pesquisaGrupoPorNome}" update=":formGrupo :panelSearch" />
+                            <p:commandButton update=":dialog :formEdit" value="Novo Grupo" icon="ui-icon-plus" oncomplete="PF('grupoEdit').show();" style="position: absolute; top: 40px; right: 15px">
+                                <f:setPropertyActionListener value="#{grupoController.novo}" target="#{grupoController.grupoSelecionado}" />
+                            </p:commandButton>
+                        </h:panelGrid>
+                    </h:form>
+                </p:panel>
+
                 <h:form id="formGrupo" prependId="false">
                     <p:dataTable id="tabelaGrupo" var="entity" widgetVar="grupo" value="#{grupoController.listGrupo}" paginator="true" paginatorPosition="bottom" 
                                  rows="10">
