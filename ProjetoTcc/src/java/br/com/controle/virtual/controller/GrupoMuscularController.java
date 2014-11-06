@@ -66,6 +66,10 @@ public class GrupoMuscularController implements Serializable {
     public void setListGrupo(List<GrupoMuscular> listGrupo) {
         this.listGrupo = listGrupo;
     }
+    
+    public List<GrupoMuscular> getListGrupoCombo() {
+        return mb.getListFind();
+    }
 
     public String pesquisaGrupoPorNome() {
         if (grupoSearch.getNome() != null) {

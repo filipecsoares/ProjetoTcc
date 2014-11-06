@@ -18,9 +18,10 @@ and open the template in the editor.
                 <p:panelGrid columns="2" columnClasses="label,value">
                     <h:outputText value="Nome:" />
                     <h:inputText value="#{exercicioController.exercicioSelecionado.nome}" />
-                    <h:selectOneMenu id="grupo" value="#{exercicioController.exercicioSelecionado.grupo.id}" required="true" label="Grupo">
-                        <f:selectItems itemLabel="#{grupoController.grupoSelecionado.nome}" itemValue="1" />
-                    </h:selectOneMenu>
+                    <p:selectOneMenu id="grupo" value="#{exercicioController.exercicioSelecionado.grupo}" required="true" label="Grupo">
+                        <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{exercicioController.listGrupo}" />
+                    </p:selectOneMenu>
                 </p:panelGrid>
                 <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{exercicioController.saveOrUpdate()}" update=":formExercicio :formEdit @this" />
             </p:outputPanel>

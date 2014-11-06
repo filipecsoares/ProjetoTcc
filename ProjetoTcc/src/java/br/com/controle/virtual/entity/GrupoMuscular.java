@@ -1,15 +1,10 @@
 package br.com.controle.virtual.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -18,7 +13,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "grupomuscular")
-public class GrupoMuscular implements Serializable{
+public class GrupoMuscular implements Serializable {
 
     @Id
     @GeneratedValue
@@ -27,22 +22,8 @@ public class GrupoMuscular implements Serializable{
     @Column(name = "nome")
     private String nome;
 
-    @OneToMany(mappedBy = "grupo")
-    private List<Exercicio> exercicio;
-    
-    public GrupoMuscular(){
-        exercicio = new ArrayList<>();
+    public GrupoMuscular() {
     }
-
-    public List<Exercicio> getExercicio() {
-        return exercicio;
-    }
-
-    public void setExercicio(List<Exercicio> exercicio) {
-        this.exercicio = exercicio;
-    }
-    
-
 
     public Integer getId() {
         return id;

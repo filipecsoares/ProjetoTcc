@@ -1,19 +1,18 @@
 package br.com.controle.virtual.entity;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Exercicio")
+@Table(name = "exercicio")
 public class Exercicio implements Serializable {
-    
+
     @Id
     @GeneratedValue
     @Column
@@ -21,16 +20,14 @@ public class Exercicio implements Serializable {
     @Column
     private String nome;
 
-    private String imagem;
-
-
     @ManyToOne
+    @JoinColumn(name = "fk_grupo")
     private GrupoMuscular grupo;
-    
-    public Exercicio(){
-        
+
+    public Exercicio() {
+
     }
-    
+
     public Integer getId() {
         return id;
     }
@@ -53,13 +50,5 @@ public class Exercicio implements Serializable {
 
     public void setGrupo(GrupoMuscular grupo) {
         this.grupo = grupo;
-    }
-    
-    public String getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
     }
 }

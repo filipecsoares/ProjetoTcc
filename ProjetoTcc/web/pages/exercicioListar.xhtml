@@ -38,10 +38,10 @@ and open the template in the editor.
                             <h:outputText value="#{entity.nome}" />
                         </p:column>
                         <p:column headerText="Ações" width="7%">
-                            <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('grupoEdit').show();">
+                            <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('exercicioEdit').show();">
                                 <f:setPropertyActionListener value="#{entity}" target="#{exercicioController.exercicioSelecionado}" />
                             </p:commandButton>
-                            <p:commandButton icon="ui-icon-close" action="#{exercicioController.delete()}" update=":formGrupo" >
+                            <p:commandButton icon="ui-icon-close" action="#{exercicioController.delete()}" update=":formExercicio" >
                                 <p:confirm header="Confirmação" message="Deseja excluir?" icon="ui-icon-alert" />
                                 <f:setPropertyActionListener value="#{entity}" target="#{exercicioController.exercicioSelecionado}" />
                             </p:commandButton>

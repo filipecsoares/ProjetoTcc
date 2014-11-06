@@ -1,6 +1,7 @@
 package br.com.controle.virtual.controller;
 
 import br.com.controle.virtual.entity.Exercicio;
+import br.com.controle.virtual.entity.GrupoMuscular;
 import br.com.controle.virtual.managedBean.ExercicioMB;
 import java.io.Serializable;
 import java.util.Date;
@@ -21,11 +22,14 @@ public class ExercicioController implements Serializable {
     private String nome;
     private Exercicio exercicioSelecionado;
     private List<Exercicio> listExercicio;
+    private List<GrupoMuscular> listGrupo;
 
     public ExercicioController() {
         mb = new ExercicioMB();
         exercicioSearch = new Exercicio();
         listExercicio = mb.getListFind();
+        GrupoMuscularController grupoController = new GrupoMuscularController();
+        listGrupo = grupoController.getListGrupoCombo();
     }
 
     public Date getMaxDate() {
@@ -75,7 +79,15 @@ public class ExercicioController implements Serializable {
     public void setListExercicio(List<Exercicio> listExercicio) {
         this.listExercicio = listExercicio;
     }
- 
+
+    public List<GrupoMuscular> getListGrupo() {
+        return listGrupo;
+    }
+
+    public void setListGrupo(List<GrupoMuscular> listGrupo) {
+        this.listGrupo = listGrupo;
+    }
+
     public String pesquisaExercicioPorNome() {
         if (exercicioSearch.getNome() != null && !exercicioSearch.getNome().equals("")) {
             listExercicio = mb.getFind(exercicioSearch.getNome());
