@@ -1,6 +1,5 @@
 package br.com.controle.virtual.dao;
 
-import br.com.controle.virtual.entity.Usuario;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -74,7 +73,7 @@ public class GenericDAO<PK, T> {
         factory = Persistence.createEntityManagerFactory("controlevirtual");
         entityManager = factory.createEntityManager();
         Session session = (Session) entityManager.getDelegate();
-        list = session.createCriteria(Usuario.class).add(Restrictions.ilike("nome", nome, MatchMode.ANYWHERE)).list();
+        list = session.createCriteria(getTypeClass()).add(Restrictions.ilike("nome", nome, MatchMode.ANYWHERE)).list();
         entityManager.close();
         factory.close();
         return list;
