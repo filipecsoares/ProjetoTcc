@@ -4,7 +4,6 @@ import br.com.controle.virtual.entity.Exercicio;
 import br.com.controle.virtual.entity.GrupoMuscular;
 import br.com.controle.virtual.managedBean.ExercicioMB;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -12,7 +11,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 
 @ManagedBean(name = "exercicioController")
 @SessionScoped
@@ -24,17 +22,14 @@ public class ExercicioController implements Serializable {
     private String nome;
     private Exercicio exercicioSelecionado;
     private List<Exercicio> listExercicio;
-    private List<SelectItem> listGrupo;
+    private List<GrupoMuscular> listGrupo;
 
     public ExercicioController() {
         mb = new ExercicioMB();
         exercicioSearch = new Exercicio();
         listExercicio = mb.getListFind();
-        listGrupo = new ArrayList<SelectItem>();
         GrupoMuscularController grupoController = new GrupoMuscularController();
-        for (GrupoMuscular gm : grupoController.getListGrupoCombo()) {
-            listGrupo.add(new SelectItem(gm, gm.getNome()));
-        }
+        listGrupo = grupoController.getListGrupoCombo();
         exercicioSelecionado = new Exercicio();
         exercicioSelecionado.setGrupo(new GrupoMuscular());
     }
@@ -87,11 +82,11 @@ public class ExercicioController implements Serializable {
         this.listExercicio = listExercicio;
     }
 
-    public List<SelectItem> getListGrupo() {
+    public List<GrupoMuscular> getListGrupo() {
         return listGrupo;
     }
 
-    public void setListGrupo(List<SelectItem> listGrupo) {
+    public void setListGrupo(List<GrupoMuscular> listGrupo) {
         this.listGrupo = listGrupo;
     }
 

@@ -19,9 +19,9 @@ and open the template in the editor.
                     <h:outputText value="Nome:" />
                     <p:inputText value="#{exercicioController.exercicioSelecionado.nome}" />
                     <h:outputText value="Grupo muscular:" />
-                    <p:selectOneMenu id="grupo" value="#{exercicioController.exercicioSelecionado.grupo}" required="true" label="Grupo">
+                    <p:selectOneMenu id="grupo" converter="GrupoConvert" value="#{exercicioController.exercicioSelecionado.grupo}" required="true" label="Grupo">
                         <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{exercicioController.listGrupo}" />
+                        <f:selectItems value="#{exercicioController.listGrupo}" var="grupo" itemValue="#{grupo}" itemLabel="#{grupo.nome}" />
                     </p:selectOneMenu>
                 </p:panelGrid>
                 <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{exercicioController.saveOrUpdate()}" update=":formExercicio :formEdit @this" title="Salvar" />
