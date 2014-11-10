@@ -20,8 +20,8 @@ and open the template in the editor.
                             <h:outputLabel value="Nome" />
                             <p:spacer/>
                             <p:inputText id="nome" title="Nome" value="#{grupoController.grupoSearch.nome}" />
-                            <p:commandButton icon="ui-icon-search" value="Pesquisar" actionListener="#{grupoController.pesquisaGrupoPorNome}" update=":formGrupo :panelSearch" />
-                            <p:commandButton update=":dialog :formEdit" value="Novo Grupo" icon="ui-icon-plus" oncomplete="PF('grupoEdit').show();" style="position: absolute; top: 40px; right: 15px">
+                            <p:commandButton icon="ui-icon-search" value="Pesquisar" actionListener="#{grupoController.pesquisaGrupoPorNome}" update=":formGrupo :panelSearch" title="Pesquisar" />
+                            <p:commandButton update=":dialog :formEdit" value="Novo Grupo" icon="ui-icon-plus" oncomplete="PF('grupoEdit').show();" style="position: absolute; top: 40px; right: 15px" title="Adicionar">
                                 <f:setPropertyActionListener value="#{grupoController.novo}" target="#{grupoController.grupoSelecionado}" />
                             </p:commandButton>
                         </h:panelGrid>
@@ -35,10 +35,10 @@ and open the template in the editor.
                             <h:outputText value="#{entity.nome}" />
                         </p:column>
                         <p:column headerText="Ações" width="7%">
-                            <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('grupoEdit').show();">
+                            <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('grupoEdit').show();" title="Editar">
                                 <f:setPropertyActionListener value="#{entity}" target="#{grupoController.grupoSelecionado}" />
                             </p:commandButton>
-                            <p:commandButton icon="ui-icon-close" action="#{grupoController.delete()}" update=":formGrupo" >
+                            <p:commandButton icon="ui-icon-close" action="#{grupoController.delete()}" update=":formGrupo" title="Excluir">
                                 <p:confirm header="Confirmação" message="Deseja excluir?" icon="ui-icon-alert" />
                                 <f:setPropertyActionListener value="#{entity}" target="#{grupoController.grupoSelecionado}" />
                             </p:commandButton>

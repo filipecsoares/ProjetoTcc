@@ -41,4 +41,8 @@ public class GrupoMuscular implements Serializable {
         this.nome = nome;
     }
 
+    @Override
+    public String toString() {
+        return this.nome;
+    }
 }

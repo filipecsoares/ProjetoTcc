@@ -20,7 +20,7 @@ and open the template in the editor.
                     <h:inputText value="#{grupoController.grupoSelecionado.nome}" />
                 </p:panelGrid>
                 <br />
-                <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{grupoController.saveOrUpdate()}" update=":formGrupo :formEdit @this" />
+                <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{grupoController.saveOrUpdate()}" update=":formGrupo :formEdit @this" title="Salvar" />
             </p:outputPanel>
         </h:form>
     </p:dialog>

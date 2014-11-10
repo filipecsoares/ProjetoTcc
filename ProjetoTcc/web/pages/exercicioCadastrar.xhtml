@@ -11,19 +11,20 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-    <p:dialog id="dialog" header="Cadastrar Exercício" widgetVar="exercicioEdit" modal="true" height="250" width="400" showEffect="fade" hideEffect="explode" resizable="false" draggable="false" appendTo="@(body)">
+    <p:dialog id="dialog" header="Cadastrar Exercício" widgetVar="exercicioEdit" modal="true" height="250" width="450" showEffect="fade" hideEffect="explode" resizable="false" draggable="false" appendTo="@(body)">
         <h:form id="formEdit" prependId="false">
             <p:messages id="messages" autoUpdate="true" closable="true" />
             <p:outputPanel id="panelEdit" style="text-align: center;">
                 <p:panelGrid columns="2" columnClasses="label,value">
                     <h:outputText value="Nome:" />
-                    <h:inputText value="#{exercicioController.exercicioSelecionado.nome}" />
+                    <p:inputText value="#{exercicioController.exercicioSelecionado.nome}" />
+                    <h:outputText value="Grupo muscular:" />
                     <p:selectOneMenu id="grupo" value="#{exercicioController.exercicioSelecionado.grupo}" required="true" label="Grupo">
                         <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
                         <f:selectItems value="#{exercicioController.listGrupo}" />
                     </p:selectOneMenu>
                 </p:panelGrid>
-                <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{exercicioController.saveOrUpdate()}" update=":formExercicio :formEdit @this" />
+                <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{exercicioController.saveOrUpdate()}" update=":formExercicio :formEdit @this" title="Salvar" />
             </p:outputPanel>
         </h:form>
     </p:dialog>

@@ -20,8 +20,8 @@ and open the template in the editor.
                             <h:outputLabel value="Nome" />
                             <p:spacer/>
                             <p:inputText id="nome" title="Nome" value="#{exercicioController.exercicioSearch.nome}" />
-                            <p:commandButton icon="ui-icon-search" value="Pesquisar" actionListener="#{exercicioController.pesquisaExercicioPorNome}" update=":formExercicio :panelSearch" />
-                            <p:commandButton update=":dialog :formEdit" value="Novo Exercício" icon="ui-icon-plus" oncomplete="PF('exercicioEdit').show();" style="position: absolute; top: 40px; right: 15px">
+                            <p:commandButton icon="ui-icon-search" value="Pesquisar" actionListener="#{exercicioController.pesquisaExercicioPorNome}" update=":formExercicio :panelSearch" title="Pesquisar"/>
+                            <p:commandButton update=":dialog :formEdit" value="Novo Exercício" icon="ui-icon-plus" oncomplete="PF('exercicioEdit').show();" style="position: absolute; top: 40px; right: 15px" title="Adicionar">
                                 <f:setPropertyActionListener value="#{exercicioController.novo}" target="#{exercicioController.exercicioSelecionado}" />
                             </p:commandButton>
                         </h:panelGrid>
@@ -31,17 +31,17 @@ and open the template in the editor.
                 <h:form id="formExercicio" prependId="false">
                     <p:dataTable id="tabelaExercicio" var="entity" widgetVar="exercicio" value="#{exercicioController.listExercicio}" paginator="true" paginatorPosition="bottom" 
                                  rows="10">
-                        <p:column headerText="Grupo">
-                            <h:outputText value="#{entity.grupo.nome}" />
-                        </p:column>
                         <p:column headerText="Exercicio">
                             <h:outputText value="#{entity.nome}" />
                         </p:column>
+                        <p:column headerText="Grupo">
+                            <h:outputText value="#{entity.grupo.nome}" />
+                        </p:column>          
                         <p:column headerText="Ações" width="7%">
-                            <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('exercicioEdit').show();">
+                            <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('exercicioEdit').show();" title="Editar">
                                 <f:setPropertyActionListener value="#{entity}" target="#{exercicioController.exercicioSelecionado}" />
                             </p:commandButton>
-                            <p:commandButton icon="ui-icon-close" action="#{exercicioController.delete()}" update=":formExercicio" >
+                            <p:commandButton icon="ui-icon-close" action="#{exercicioController.delete()}" update=":formExercicio" title="Excluir">
                                 <p:confirm header="Confirmação" message="Deseja excluir?" icon="ui-icon-alert" />
                                 <f:setPropertyActionListener value="#{entity}" target="#{exercicioController.exercicioSelecionado}" />
                             </p:commandButton>

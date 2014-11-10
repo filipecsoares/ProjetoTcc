@@ -11,7 +11,7 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-    <p:dialog id="dialog" header="Cadastrar Usuário" widgetVar="usuarioEdit" modal="true" height="250" width="400" showEffect="fade" hideEffect="explode" resizable="false" draggable="false" appendTo="@(body)">
+    <p:dialog id="dialog" header="Cadastrar Usuário" widgetVar="usuarioEdit" modal="true" height="270" width="400" showEffect="fade" hideEffect="explode" resizable="false" draggable="false" appendTo="@(body)">
         <h:form id="formEdit" prependId="false">
             <p:messages id="messages" autoUpdate="true" closable="true" />
             <p:outputPanel id="panelEdit" style="text-align: center;">
@@ -27,7 +27,7 @@ and open the template in the editor.
                     <h:outputText value="Data de nascimento:" />
                     <p:calendar value="#{usuarioController.usuarioSelecionado.dtNascimento}" navigator="true" locale="br" pattern="dd/MM/yyyy" maxdate="#{usuarioController.maxDate}" />
                 </p:panelGrid>
-                <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{usuarioController.saveOrUpdate()}" update=":formUsuario :formEdit @this" />
+                <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{usuarioController.saveOrUpdate()}" update=":formUsuario :formEdit @this" title="Salvar" />
             </p:outputPanel>
         </h:form>
     </p:dialog>

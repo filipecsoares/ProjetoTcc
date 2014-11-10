@@ -16,14 +16,14 @@ and open the template in the editor.
             <ui:define name="content">
                 <p:panel id="panelSearch" header="Usuário">
                     <h:form>
-                    <h:panelGrid id="panelGrid" columns="2">
-                        <h:outputLabel value="Nome" />
-                        <p:spacer/>
-                        <p:inputText title="Nome" value="#{usuarioController.usuarioSearch.nome}" />
-                        <p:commandButton icon="ui-icon-search" value="Pesquisar" actionListener="#{usuarioController.pesquisaUsuarioPorNome}" update=":formUsuario :panelSearch" />
-                    </h:panelGrid>
+                        <h:panelGrid id="panelGrid" columns="2">
+                            <h:outputLabel value="Nome" />
+                            <p:spacer/>
+                            <p:inputText title="Nome" value="#{usuarioController.usuarioSearch.nome}" />
+                            <p:commandButton icon="ui-icon-search" value="Pesquisar" actionListener="#{usuarioController.pesquisaUsuarioPorNome}" update=":formUsuario :panelSearch" title="Pesquisar" />
+                        </h:panelGrid>
                     </h:form>
-                    <p:commandButton update=":dialog :formEdit" value="Novo Usuário" icon="ui-icon-plus" oncomplete="PF('usuarioEdit').show();" style="position: absolute; top: 70px; right: 15px">
+                    <p:commandButton update=":dialog :formEdit" value="Novo Usuário" icon="ui-icon-plus" oncomplete="PF('usuarioEdit').show();" style="position: absolute; top: 70px; right: 15px" title="Adicionar">
                         <f:setPropertyActionListener value="#{usuarioController.novo}" target="#{usuarioController.usuarioSelecionado}" />
                     </p:commandButton>
                 </p:panel>
@@ -45,10 +45,10 @@ and open the template in the editor.
                             <h:outputText value="#{entity.login}" />
                         </p:column>
                         <p:column headerText="Ações" width="7%">
-                            <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('usuarioEdit').show();">
+                            <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('usuarioEdit').show();" title="Editar">
                                 <f:setPropertyActionListener value="#{entity}" target="#{usuarioController.usuarioSelecionado}" />
                             </p:commandButton>
-                            <p:commandButton icon="ui-icon-close" action="#{usuarioController.delete()}" update=":formUsuario" >
+                            <p:commandButton icon="ui-icon-close" action="#{usuarioController.delete()}" update=":formUsuario" title="Excluir">
                                 <p:confirm header="Confirmação" message="Deseja excluir?" icon="ui-icon-alert" />
                                 <f:setPropertyActionListener value="#{entity}" target="#{usuarioController.usuarioSelecionado}" />
                             </p:commandButton>
