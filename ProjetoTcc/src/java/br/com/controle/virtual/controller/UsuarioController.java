@@ -1,6 +1,7 @@
 package br.com.controle.virtual.controller;
 
 import br.com.controle.virtual.entity.Usuario;
+import br.com.controle.virtual.enumerador.TipoUsuario;
 import br.com.controle.virtual.managedBean.UsuarioMB;
 import java.io.Serializable;
 import java.util.Date;
@@ -87,6 +88,9 @@ public class UsuarioController implements Serializable {
     }
 
     private void save() {
+        if (usuarioSelecionado.getTipo() == null) {
+            usuarioSelecionado.setTipo(TipoUsuario.USUARIO);
+        }
         if (mb.save(usuarioSelecionado) != null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo com sucesso", "Usuário salvo"));
         } else {
