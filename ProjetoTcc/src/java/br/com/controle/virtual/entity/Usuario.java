@@ -1,9 +1,12 @@
 package br.com.controle.virtual.entity;
 
+import br.com.controle.virtual.enumerador.TipoUsuario;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -28,6 +31,9 @@ public class Usuario implements Serializable {
     private String login;
     @Column(name = "senha")
     private String senha;
+    @Enumerated(EnumType.ORDINAL)
+    @Column(columnDefinition = "int default 1")
+    private TipoUsuario tipo;
 
     public Usuario() {
 
@@ -83,5 +89,13 @@ public class Usuario implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public TipoUsuario getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoUsuario tipo) {
+        this.tipo = tipo;
     }
 }

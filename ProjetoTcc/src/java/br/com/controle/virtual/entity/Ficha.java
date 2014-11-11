@@ -7,21 +7,41 @@ package br.com.controle.virtual.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author filipe_soares
  */
-public class Ficha implements Serializable{
+@Entity
+@Table(name = "ficha")
+public class Ficha implements Serializable {
 
+    @Id
+    @GeneratedValue
+    @Column
     private Integer id;
+    @Column
     private String objetivo;
+    @Column(name = "dt_cadastro")
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dtCadastro;
+    @Column(name = "dt_mudanca_prevista")
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dtMudancaPrevista;
-    private Integer fkUsuario;
-    private Integer fkAdministrador;
+    @ManyToOne
+    @JoinColumn(name = "fk_usuario")
     private Usuario usuario;
-    private Administrador administrador;
+    @ManyToOne
+    @JoinColumn(name = "fk_administrador")
+    private Usuario administrador;
 
     public Ficha() {
 
@@ -59,22 +79,6 @@ public class Ficha implements Serializable{
         this.dtMudancaPrevista = dtMudancaPrevista;
     }
 
-    public Integer getFkUsuario() {
-        return fkUsuario;
-    }
-
-    public void setFkUsuario(Integer fkUsuario) {
-        this.fkUsuario = fkUsuario;
-    }
-
-    public Integer getFkAdministrador() {
-        return fkAdministrador;
-    }
-
-    public void setFkAdministrador(Integer fkAdministrador) {
-        this.fkAdministrador = fkAdministrador;
-    }
-
     public Usuario getUsuario() {
         return usuario;
     }
@@ -83,11 +87,11 @@ public class Ficha implements Serializable{
         this.usuario = usuario;
     }
 
-    public Administrador getAdministrador() {
+    public Usuario getAdministrador() {
         return administrador;
     }
 
-    public void setAdministrador(Administrador administrador) {
+    public void setAdministrador(Usuario administrador) {
         this.administrador = administrador;
     }
 }
