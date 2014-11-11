@@ -21,7 +21,7 @@ and open the template in the editor.
                             <p:spacer/>
                             <p:inputText id="nome" title="Nome" value="#{grupoController.grupoSearch.nome}" />
                             <p:commandButton icon="ui-icon-search" value="Pesquisar" actionListener="#{grupoController.pesquisaGrupoPorNome}" update=":formGrupo :panelSearch" title="Pesquisar" />
-                            <p:commandButton update=":dialog :formEdit" value="Novo Grupo" icon="ui-icon-plus" oncomplete="PF('grupoEdit').show();" style="position: absolute; top: 40px; right: 15px" title="Adicionar">
+                            <p:commandButton update=":dialog :formEdit" value="Novo Grupo" icon="ui-icon-plus" oncomplete="PF('grupoEdit').show();" style="position: absolute; top: 70px; right: 15px" title="Adicionar">
                                 <f:setPropertyActionListener value="#{grupoController.novo}" target="#{grupoController.grupoSelecionado}" />
                             </p:commandButton>
                         </h:panelGrid>

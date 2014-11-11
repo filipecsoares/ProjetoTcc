@@ -21,7 +21,7 @@ and open the template in the editor.
                             <p:spacer/>
                             <p:inputText id="nome" title="Nome" value="#{exercicioController.exercicioSearch.nome}" />
                             <p:commandButton icon="ui-icon-search" value="Pesquisar" actionListener="#{exercicioController.pesquisaExercicioPorNome}" update=":formExercicio :panelSearch" title="Pesquisar"/>
-                            <p:commandButton update=":dialog :formEdit" value="Novo Exercício" icon="ui-icon-plus" oncomplete="PF('exercicioEdit').show();" style="position: absolute; top: 40px; right: 15px" title="Adicionar">
+                            <p:commandButton update=":dialog :formEdit" value="Novo Exercício" icon="ui-icon-plus" oncomplete="PF('exercicioEdit').show();" style="position: absolute; top: 70px; right: 15px" title="Adicionar">
                                 <f:setPropertyActionListener value="#{exercicioController.novo}" target="#{exercicioController.exercicioSelecionado}" />
                             </p:commandButton>
                         </h:panelGrid>
