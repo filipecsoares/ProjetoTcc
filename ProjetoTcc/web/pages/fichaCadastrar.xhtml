@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <p:dialog id="dialog" header="Cadastrar Ficha" widgetVar="fichaEdit" modal="true" height="270" width="400" showEffect="fade" hideEffect="explode" resizable="false" draggable="false" appendTo="@(body)">
+        <h:form id="formEdit" prependId="false">
+            <p:messages id="messages" autoUpdate="true" closable="true" />
+            <p:outputPanel id="panelEdit" style="text-align: center;">
+                <p:panelGrid columns="2" columnClasses="label,value">
+                    <h:outputText value="Usuário:" />
+                    <p:selectOneMenu id="usuario" converter="GrupoConvert" value="#{fichaController.fichaSelecionada.usuario}" required="true" label="usuario" style="width: 100%">
+                        <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{fichaController.listUsuario}" var="usuario" itemValue="#{usuario}" itemLabel="#{usuario.nome}" />
+                    </p:selectOneMenu>
+                    <h:outputText value="Objetivo:" />
+                    <h:inputText value="#{fichaController.fichaSelecionada.objetivo}" />
+                    <h:outputText value="Mudança prevista:" />
+                    <p:calendar value="#{fichaController.fichaSelecionada.dtMudancaPrevista}" navigator="true" locale="br" pattern="dd/MM/yyyy" />
+                </p:panelGrid>
+                <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{fichaController.saveOrUpdate()}" update=":formFicha :formEdit @this" title="Salvar" />
+            </p:outputPanel>
+        </h:form>
+    </p:dialog>
+</html>

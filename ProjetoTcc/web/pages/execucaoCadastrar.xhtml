@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <p:dialog id="dialog" header="Cadastrar Ficha" widgetVar="fichaEdit" modal="true" height="270" width="400" showEffect="fade" hideEffect="explode" resizable="false" draggable="false" appendTo="@(body)">
+        <h:form id="formEdit" prependId="false">
+            <p:messages id="messages" autoUpdate="true" closable="true" />
+            <p:outputPanel id="panelEdit" style="text-align: center;">
+                <p:panelGrid columns="4" columnClasses="label,value">
+                    <h:outputText value="Usuário:" />
+                    <h:inputText value="#{fichaController.fichaSelecionada.usuario.nome}" />
+                    <p:outputLabel value="Série:" for="serie"/>
+                    <p:inputText id="serie" value="#{fichaController.execucaoEditar.serie}" />
+                    <h:outputText value="Objetivo:" />
+                    <h:inputText value="#{fichaController.fichaSelecionada.objetivo}" />
+                    <p:outputLabel value="Repetição:" for="repeticao"/>
+                    <h:inputText id="repeticao" value="#{fichaController.execucaoEditar.repeticao}" />
+                    <p:selectOneMenu id="grupo" converter="GrupoConvert" value="#{fichaController.grupo}" required="true" label="Grupo" style="width: 100%">
+                        <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{fichaController.listGrupo}" var="grupo" itemValue="#{grupo}" itemLabel="#{grupo.nome}" />
+                    </p:selectOneMenu>
+                    <h:outputText value="Carga:" />
+                    <h:inputText value="#{fichaController.execucaoEditar.carga}" />
+                    <p:selectOneMenu id="exercicio" converter="GrupoConvert" value="#{fichaController.execucaoEditar.exercicio}" required="true" label="Exercício" style="width: 100%">
+                        <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{fichaController.listExercicio}" var="exercicio" itemValue="#{exercicio}" itemLabel="#{exercicio.nome}" />
+                    </p:selectOneMenu>
+                     <h:outputText value="Intervalo:" />
+                    <h:inputText value="#{fichaController.execucaoEditar.intervalo}" />
+                    <h:outputText value="Mudança prevista:" />
+                    <p:calendar value="#{fichaController.fichaSelecionada.dtMudancaPrevista}" navigator="true" locale="br" pattern="dd/MM/yyyy" maxdate="#{fichaController.maxDate}" />
+                </p:panelGrid>
+                <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{fichaController.saveOrUpdate()}" update=":formFicha :formEdit @this" title="Salvar" />
+            </p:outputPanel>
+        </h:form>
+    </p:dialog>
+</html>

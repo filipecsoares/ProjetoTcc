@@ -32,6 +32,11 @@ public class FichaMB {
         return lista;
     }
 
+    public List<Ficha> getFindComplete(String nome) {
+        List<Ficha> lista = dao.findComplete(nome);
+        return lista;
+    }
+
     public void delete(Ficha ficha) {
         dao.delete(ficha);
     }

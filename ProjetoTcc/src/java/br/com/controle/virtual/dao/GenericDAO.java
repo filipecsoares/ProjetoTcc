@@ -79,6 +79,17 @@ public class GenericDAO<PK, T> {
         return list;
     }
 
+    public List<T> findComplete(String nome) {
+        List<T> list;
+        factory = Persistence.createEntityManagerFactory("controlevirtual");
+        entityManager = factory.createEntityManager();
+        Session session = (Session) entityManager.getDelegate();
+        list = session.createCriteria(getTypeClass()).add(Restrictions.ilike("nome", nome, MatchMode.START)).list();
+        entityManager.close();
+        factory.close();
+        return list;
+    }
+
     private Class<?> getTypeClass() {
         Class<?> clazz = (Class<?>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
         return clazz;

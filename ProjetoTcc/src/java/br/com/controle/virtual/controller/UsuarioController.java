@@ -86,6 +86,10 @@ public class UsuarioController implements Serializable {
             atualizaListaUsuario();
         }
     }
+    
+    public List<Usuario> getListUsuarioCombo() {
+        return mb.getListFind();
+    }
 
     private void save() {
         if (usuarioSelecionado.getTipo() == null) {
