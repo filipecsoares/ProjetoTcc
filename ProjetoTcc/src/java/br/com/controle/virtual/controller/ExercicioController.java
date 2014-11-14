@@ -101,6 +101,10 @@ public class ExercicioController implements Serializable {
         listExercicio = mb.getListFind();
     }
 
+    public List<Exercicio> findByGrupo(Integer fkGrupo) {
+        return mb.getFindByGrupo(fkGrupo);
+    }
+
     public void delete() {
         if (exercicioSelecionado != null && exercicioSelecionado.getId() != null) {
             mb.delete(exercicioSelecionado);

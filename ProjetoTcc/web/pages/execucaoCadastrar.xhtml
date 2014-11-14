@@ -11,36 +11,69 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-    <p:dialog id="dialog" header="Cadastrar Ficha" widgetVar="fichaEdit" modal="true" height="270" width="400" showEffect="fade" hideEffect="explode" resizable="false" draggable="false" appendTo="@(body)">
-        <h:form id="formEdit" prependId="false">
-            <p:messages id="messages" autoUpdate="true" closable="true" />
-            <p:outputPanel id="panelEdit" style="text-align: center;">
+    <p:dialog id="dialogExecucao" header="Cadastrar Exercício para execucao" widgetVar="execucaoEdit" modal="true" height="500" width="750" showEffect="fade" hideEffect="explode" resizable="false" draggable="false" appendTo="@(body)">
+        <h:form id="formEdit2" prependId="false">
+            <p:messages id="messages2" autoUpdate="true" closable="true" />
+            <p:outputPanel id="panelEdit2" style="text-align: center;">
                 <p:panelGrid columns="4" columnClasses="label,value">
-                    <h:outputText value="Usuário:" />
-                    <h:inputText value="#{fichaController.fichaSelecionada.usuario.nome}" />
+                    <h:outputText value="Grupo muscular:" />
+                    <p:selectOneMenu id="grupo" converter="GrupoConvert" value="#{execucaoController.grupo}" label="Grupo" style="width: 100%">
+                        <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{execucaoController.listGrupo}" var="grupo" itemValue="#{grupo}" itemLabel="#{grupo.nome}" />
+                        <f:ajax event="change" listener="#{execucaoController.atualizaCombo}" render="exercicio" />
+                    </p:selectOneMenu>
                     <p:outputLabel value="Série:" for="serie"/>
-                    <p:inputText id="serie" value="#{fichaController.execucaoEditar.serie}" />
-                    <h:outputText value="Objetivo:" />
-                    <h:inputText value="#{fichaController.fichaSelecionada.objetivo}" />
+                    <p:inputText id="serie" value="#{execucaoController.execucaoSelecionado.serie}" />
+                    <h:outputText value="Exercício:" />
+                    <p:selectOneMenu id="exercicio" converter="GrupoConvert" value="#{execucaoController.exercicio}" required="true" label="Exercício" style="width: 100%">
+                        <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{execucaoController.listExercicio}" var="exercicio" itemValue="#{exercicio}" itemLabel="#{exercicio.nome}" />
+                    </p:selectOneMenu>
                     <p:outputLabel value="Repetição:" for="repeticao"/>
-                    <h:inputText id="repeticao" value="#{fichaController.execucaoEditar.repeticao}" />
-                    <p:selectOneMenu id="grupo" converter="GrupoConvert" value="#{fichaController.grupo}" required="true" label="Grupo" style="width: 100%">
-                        <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{fichaController.listGrupo}" var="grupo" itemValue="#{grupo}" itemLabel="#{grupo.nome}" />
-                    </p:selectOneMenu>
+                    <h:inputText id="repeticao" value="#{execucaoController.execucaoSelecionado.repeticao}" />
                     <h:outputText value="Carga:" />
-                    <h:inputText value="#{fichaController.execucaoEditar.carga}" />
-                    <p:selectOneMenu id="exercicio" converter="GrupoConvert" value="#{fichaController.execucaoEditar.exercicio}" required="true" label="Exercício" style="width: 100%">
-                        <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{fichaController.listExercicio}" var="exercicio" itemValue="#{exercicio}" itemLabel="#{exercicio.nome}" />
-                    </p:selectOneMenu>
-                     <h:outputText value="Intervalo:" />
-                    <h:inputText value="#{fichaController.execucaoEditar.intervalo}" />
-                    <h:outputText value="Mudança prevista:" />
-                    <p:calendar value="#{fichaController.fichaSelecionada.dtMudancaPrevista}" navigator="true" locale="br" pattern="dd/MM/yyyy" maxdate="#{fichaController.maxDate}" />
+                    <h:inputText value="#{execucaoController.execucaoSelecionado.carga}" />
+                    <h:outputText value="Intervalo:" />
+                    <h:inputText value="#{execucaoController.execucaoSelecionado.intervalo}" />
                 </p:panelGrid>
-                <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{fichaController.saveOrUpdate()}" update=":formFicha :formEdit @this" title="Salvar" />
             </p:outputPanel>
+            <h:form id="formExecucao" prependId="false">
+                <p:dataTable id="tabelaExecucao" var="entity" widgetVar="execucao" value="#{execucaoController.listExecucao}" paginator="true" paginatorPosition="bottom" 
+                             rows="10">
+                    <p:column headerText="Exercício">
+                        <h:outputText value="#{entity.exercicio.nome}" />
+                    </p:column>
+                    <p:column headerText="Grupo">
+                        <h:outputText value="#{entity.exercicio.grupo.nome}" />
+                    </p:column>
+                    <p:column headerText="Série">
+                        <h:outputText value="#{entity.serie}" />
+                    </p:column>
+                    <p:column headerText="Repetição">
+                        <h:outputText value="#{entity.repeticao}" />
+                    </p:column>
+                    <p:column headerText="Carga">
+                        <h:outputText value="#{entity.carga}" />
+                    </p:column>
+                    <p:column headerText="Intervalo">
+                        <h:outputText value="#{entity.intervalo}" />
+                    </p:column>
+                    <p:column headerText="Ações" width="7%">
+                        <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('execucaoEdit').show();" title="Editar">
+                            <f:setPropertyActionListener value="#{entity}" target="#{execucaoController.execucaoSelecionado}" />
+                        </p:commandButton>
+                        <p:commandButton icon="ui-icon-close" action="#{execucaoController.delete()}" update=":formExecucao" title="Excluir">
+                            <p:confirm header="Confirmação" message="Deseja excluir?" icon="ui-icon-alert" />
+                            <f:setPropertyActionListener value="#{entity}" target="#{execucaoController.execucaoSelecionado}" />
+                        </p:commandButton>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+            <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{execucaoController.saveOrUpdate()}" update="formExecucao :formEdit2 @this" title="Salvar" />
         </h:form>
     </p:dialog>
 </html>

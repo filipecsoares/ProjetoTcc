@@ -31,6 +31,11 @@ public class ExecucaoMB {
         List<Execucao> lista = dao.find(nome);
         return lista;
     }
+    
+    public List<Execucao> getFindByFicha(Integer fkFicha) {
+        List<Execucao> lista = dao.findByFicha(fkFicha);
+        return lista;
+    }
 
     public void delete(Execucao execucao) {
         dao.delete(execucao);

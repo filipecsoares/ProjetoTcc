@@ -23,13 +23,13 @@ public class Execucao implements Serializable {
     @Column
     private Integer id;
     @Column
-    private Integer serie;
+    private String serie;
     @Column
-    private Integer repeticao;
+    private String repeticao;
     @Column
-    private Integer carga;
+    private String carga;
     @Column
-    private Integer intervalo;
+    private String intervalo;
     @ManyToOne
     @JoinColumn(name = "fk_exercicio")
     private Exercicio exercicio;
@@ -45,35 +45,35 @@ public class Execucao implements Serializable {
         this.id = id;
     }
 
-    public Integer getSerie() {
+    public String getSerie() {
         return serie;
     }
 
-    public void setSerie(Integer serie) {
+    public void setSerie(String serie) {
         this.serie = serie;
     }
 
-    public Integer getRepeticao() {
+    public String getRepeticao() {
         return repeticao;
     }
 
-    public void setRepeticao(Integer repeticao) {
+    public void setRepeticao(String repeticao) {
         this.repeticao = repeticao;
     }
 
-    public Integer getCarga() {
+    public String getCarga() {
         return carga;
     }
 
-    public void setCarga(Integer carga) {
+    public void setCarga(String carga) {
         this.carga = carga;
     }
 
-    public Integer getIntervalo() {
+    public String getIntervalo() {
         return intervalo;
     }
 
-    public void setIntervalo(Integer intervalo) {
+    public void setIntervalo(String intervalo) {
         this.intervalo = intervalo;
     }
 

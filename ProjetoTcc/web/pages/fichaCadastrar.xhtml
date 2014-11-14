@@ -27,6 +27,9 @@ and open the template in the editor.
                     <p:calendar value="#{fichaController.fichaSelecionada.dtMudancaPrevista}" navigator="true" locale="br" pattern="dd/MM/yyyy" />
                 </p:panelGrid>
                 <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{fichaController.saveOrUpdate()}" update=":formFicha :formEdit @this" title="Salvar" />
+                <p:commandButton update=":dialogExecucao" value="Cadastrar exercício" icon="ui-icon-pencil" oncomplete="PF('execucaoEdit').show();" title="Cadastrar exercício">
+                    <f:setPropertyActionListener value="#{fichaController.fichaSelecionada}" target="#{execucaoController.ficha}" />
+                </p:commandButton>
             </p:outputPanel>
         </h:form>
     </p:dialog>

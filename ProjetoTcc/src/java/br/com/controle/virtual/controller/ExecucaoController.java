@@ -1,15 +1,21 @@
 package br.com.controle.virtual.controller;
 
 import br.com.controle.virtual.entity.Execucao;
+import br.com.controle.virtual.entity.Exercicio;
+import br.com.controle.virtual.entity.Ficha;
+import br.com.controle.virtual.entity.GrupoMuscular;
 import br.com.controle.virtual.managedBean.ExecucaoMB;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 
 @ManagedBean(name = "execucaoController")
 @SessionScoped
@@ -20,11 +26,21 @@ public class ExecucaoController implements Serializable {
     private Execucao execucaoSearch;
     private Execucao execucaoSelecionado;
     private List<Execucao> listExecucao;
+    private List<GrupoMuscular> listGrupo;
+    private List<Exercicio> listExercicio;
+    private Ficha ficha;
+    private GrupoMuscular grupo;
+    private Exercicio exercicio;
 
     public ExecucaoController() {
         mb = new ExecucaoMB();
         execucaoSearch = new Execucao();
+        execucaoSelecionado = new Execucao();
+        execucaoSelecionado.setExercicio(new Exercicio());
         listExecucao = mb.getListFind();
+        GrupoMuscularController grupoController = new GrupoMuscularController();
+        listGrupo = grupoController.getListGrupoCombo();
+        listExercicio = new ArrayList<>();
     }
 
     public Date getMaxDate() {
@@ -59,8 +75,59 @@ public class ExecucaoController implements Serializable {
         this.execucaoSelecionado = execucaoSelecionado;
     }
 
+    public List<GrupoMuscular> getListGrupo() {
+        return listGrupo;
+    }
+
+    public void setListGrupo(List<GrupoMuscular> listGrupo) {
+        this.listGrupo = listGrupo;
+    }
+
+    public List<Exercicio> getListExercicio() {
+        return listExercicio;
+    }
+
+    public void setListExercicio(List<Exercicio> listExercicio) {
+        this.listExercicio = listExercicio;
+    }
+
+    public Ficha getFicha() {
+        return ficha;
+    }
+
+    public void setFicha(Ficha ficha) {
+        this.ficha = ficha;
+    }
+
+    public GrupoMuscular getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(GrupoMuscular grupo) {
+        this.grupo = grupo;
+    }
+
+    public Exercicio getExercicio() {
+        return exercicio;
+    }
+
+    public void setExercicio(Exercicio exercicio) {
+        this.exercicio = exercicio;
+    }
+
     public void atualizaListaExecucao() {
-        listExecucao = mb.getListFind();
+        listExecucao = mb.getFindByFicha(getFicha().getId());
+    }
+
+    public void atualizaCombo(AjaxBehaviorEvent event) {
+        try {
+            UIInput input = (UIInput) event.getComponent();
+            GrupoMuscular grupo = (GrupoMuscular) input.getValue();
+            ExercicioController exController = new ExercicioController();
+            listExercicio = exController.findByGrupo(grupo.getId());
+        } catch (Exception e) {
+            listExercicio = new ArrayList<>();
+        }
     }
 
     public void delete() {
