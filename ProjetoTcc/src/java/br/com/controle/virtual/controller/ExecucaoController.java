@@ -37,10 +37,29 @@ public class ExecucaoController implements Serializable {
         execucaoSearch = new Execucao();
         execucaoSelecionado = new Execucao();
         execucaoSelecionado.setExercicio(new Exercicio());
-        listExecucao = mb.getListFind();
         GrupoMuscularController grupoController = new GrupoMuscularController();
         listGrupo = grupoController.getListGrupoCombo();
         listExercicio = new ArrayList<>();
+        if (ficha != null && ficha.getId() != null) {
+            listExecucao = mb.getFindByFicha(ficha.getId());
+        } else {
+            listExecucao = new ArrayList<>();
+        }
+    }
+
+    public ExecucaoController(Ficha ficha) {
+        mb = new ExecucaoMB();
+        execucaoSearch = new Execucao();
+        execucaoSelecionado = new Execucao();
+        execucaoSelecionado.setExercicio(new Exercicio());
+        GrupoMuscularController grupoController = new GrupoMuscularController();
+        listGrupo = grupoController.getListGrupoCombo();
+        listExercicio = new ArrayList<>();
+        if (ficha != null && ficha.getId() != null) {
+            listExecucao = mb.getFindByFicha(ficha.getId());
+        } else {
+            listExecucao = new ArrayList<>();
+        }
     }
 
     public Date getMaxDate() {
@@ -97,6 +116,11 @@ public class ExecucaoController implements Serializable {
 
     public void setFicha(Ficha ficha) {
         this.ficha = ficha;
+        if (ficha != null && ficha.getId() != null) {
+            listExecucao = mb.getFindByFicha(ficha.getId());
+        } else {
+            listExecucao = new ArrayList<>();
+        }
     }
 
     public GrupoMuscular getGrupo() {
@@ -117,6 +141,17 @@ public class ExecucaoController implements Serializable {
 
     public void atualizaListaExecucao() {
         listExecucao = mb.getFindByFicha(getFicha().getId());
+    }
+
+    public String abrir(Ficha ficha) {
+        this.ficha = ficha;
+        listExecucao = mb.getFindByFicha(ficha.getId());
+        return "execucaoListar.xhtml";
+    }
+
+    public String abrir() {
+        listExecucao = mb.getFindByFicha(ficha.getId());
+        return "execucaoListar.xhtml";
     }
 
     public void atualizaCombo(AjaxBehaviorEvent event) {
@@ -154,6 +189,10 @@ public class ExecucaoController implements Serializable {
     }
 
     public void saveOrUpdate() {
+        if (execucaoSelecionado.getFicha() == null) {
+            execucaoSelecionado.setFicha(ficha);
+        }
+        execucaoSelecionado.setExercicio(exercicio);
         if (execucaoSelecionado.getId() == null || execucaoSelecionado.getId().equals(0)) {
             save();
         } else {

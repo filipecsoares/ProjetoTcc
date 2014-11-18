@@ -51,4 +51,34 @@ public class Exercicio implements Serializable {
     public void setGrupo(GrupoMuscular grupo) {
         this.grupo = grupo;
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (getClass() != o.getClass()) {
+            return false;
+        }
+        Exercicio exercicio = (Exercicio) o;
+        if (id == null) {
+            if (exercicio.id != null) {
+                return false;
+            }
+        } else if (!id.equals(exercicio.id)) {
+            return false;
+        }
+        return true;
+    }
 }

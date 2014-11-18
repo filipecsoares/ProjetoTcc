@@ -46,9 +46,12 @@ and open the template in the editor.
                                 <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
-                        <p:column headerText="Ações" width="7%">
+                        <p:column headerText="Ações" width="10%">
                             <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('fichaEdit').show();" title="Editar">
                                 <f:setPropertyActionListener value="#{entity}" target="#{fichaController.fichaSelecionada}" />
+                            </p:commandButton>
+                            <p:commandButton icon="ui-icon-plusthick" title="Abrir Exercícios" action="#{execucaoController.abrir}">
+                                <f:setPropertyActionListener value="#{entity}" target="#{execucaoController.ficha}" />
                             </p:commandButton>
                             <p:commandButton icon="ui-icon-close" action="#{fichaController.delete()}" update=":formFicha" title="Excluir">
                                 <p:confirm header="Confirmação" message="Deseja excluir?" icon="ui-icon-alert" />
@@ -62,7 +65,6 @@ and open the template in the editor.
                     </p:dataTable>
                 </h:form>
                 <ui:include src="/pages/fichaCadastrar.xhtml" />
-                <ui:include src="/pages/execucaoCadastrar.xhtml" />
             </ui:define>
         </ui:composition>
     </h:body>
