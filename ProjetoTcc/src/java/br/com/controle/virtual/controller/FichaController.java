@@ -90,6 +90,10 @@ public class FichaController implements Serializable {
         return "";
     }
 
+    public String abrir() {
+        return "execucaoListar.xhtml";
+    }
+
     public void atualizaListaFicha() {
         listFicha = mb.getListFind();
     }

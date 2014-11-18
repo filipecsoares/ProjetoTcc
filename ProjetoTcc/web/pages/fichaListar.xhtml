@@ -50,7 +50,7 @@ and open the template in the editor.
                             <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('fichaEdit').show();" title="Editar">
                                 <f:setPropertyActionListener value="#{entity}" target="#{fichaController.fichaSelecionada}" />
                             </p:commandButton>
-                            <p:commandButton icon="ui-icon-plusthick" title="Abrir Exercícios" action="#{execucaoController.abrir}">
+                            <p:commandButton icon="ui-icon-plusthick" title="Abrir Exercícios" action="#{fichaController.abrir}">
                                 <f:setPropertyActionListener value="#{entity}" target="#{execucaoController.ficha}" />
                             </p:commandButton>
                             <p:commandButton icon="ui-icon-close" action="#{fichaController.delete()}" update=":formFicha" title="Excluir">
