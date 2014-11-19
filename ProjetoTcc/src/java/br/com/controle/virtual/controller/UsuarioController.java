@@ -27,6 +27,7 @@ public class UsuarioController implements Serializable {
         mb = new UsuarioMB();
         usuarioSearch = new Usuario();
         listUsuario = mb.getListFind();
+        usuarioSelecionado = new Usuario();
     }
 
     public Date getMaxDate() {
@@ -86,7 +87,7 @@ public class UsuarioController implements Serializable {
             atualizaListaUsuario();
         }
     }
-    
+
     public List<Usuario> getListUsuarioCombo() {
         return mb.getListFind();
     }
@@ -117,5 +118,15 @@ public class UsuarioController implements Serializable {
             update();
         }
         atualizaListaUsuario();
+    }
+
+    public String verificaLoginSenha() {
+        usuarioSelecionado = mb.getFindLoginSenha(usuarioSelecionado.getLogin(), usuarioSelecionado.getSenha());
+        if (usuarioSelecionado == null) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login ou senha\n inválido", ""));
+            return "login.xhtml";
+        } else {
+            return "telaPrincipal.xhtml";
+        }
     }
 }

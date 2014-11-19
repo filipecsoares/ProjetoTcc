@@ -27,10 +27,10 @@ and open the template in the editor.
                     <h:panelGrid id="idGrid" cellpadding="5">
                         <p:messages id="messages" showDetail="true" autoUpdate="true" />
                         <h:outputLabel for="usuario" value="Usuário:" style="font-weight:bold" />
-                        <p:inputText id="usuario" value="#{loginController.senha}" required="true" requiredMessage="Usuário obrigatório!"/>
+                        <p:inputText id="usuario" value="#{usuarioController.usuarioSelecionado.login}" required="true" requiredMessage="Usuário obrigatório!"/>
                         <h:outputLabel for="senha" value="Senha:" style="font-weight:bold" />
-                        <p:password id="senha" value="#{loginController.senha}" required="true" requiredMessage="Senha obrigatória!" />
-                        <p:commandButton value="Entrar" update="idGrid" icon="ui-icon-check" style="left: 25%" />
+                        <p:password id="senha" value="#{usuarioController.usuarioSelecionado.senha}" required="true" requiredMessage="Senha obrigatória!" />
+                        <p:commandButton value="Entrar" update="idGrid" icon="ui-icon-check" style="left: 25%" action="#{usuarioController.verificaLoginSenha()}"/>
                     </h:panelGrid>
                 </p:panel>
             </h:form>
