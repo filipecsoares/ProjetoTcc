@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition template="/template/template_1.xhtml">
+            <ui:define name="content">
+                <p:panel id="panelSearch" header="Ficha de Treino">
+                    <h:form>
+                        <h:panelGrid id="panelGrid" columns="2">
+                            <h:outputLabel value="Grupo muscular" />
+                            <p:spacer/>
+                            <p:selectOneMenu id="grupoSearch" converter="GrupoConvert" value="#{execucaoController.grupo}" label="Grupo muscular" style="width: 100%">
+                                <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{execucaoController.listGrupo}" var="grupo" itemValue="#{grupo}" itemLabel="#{grupo.nome}" />
+                            </p:selectOneMenu>
+                            <p:commandButton icon="ui-icon-search" value="Pesquisar" actionListener="#{execucaoController.pesquisaExecucaoPorGrupo}" update=":formExecucao :panelSearch" title="Pesquisar" />
+                        </h:panelGrid>
+                    </h:form>
+                </p:panel>
+                <h:form id="formExecucao" prependId="false">
+                    <p:dataTable id="tabelaExecucao" var="entity" widgetVar="execucao" value="#{execucaoController.listExecucao}" paginator="true" paginatorPosition="bottom" 
+                                 rows="10">
+                        <p:column headerText="Exercício">
+                            <h:outputText value="#{entity.exercicio.nome}" />
+                        </p:column>
+                        <p:column headerText="Grupo">
+                            <h:outputText value="#{entity.exercicio.grupo.nome}" />
+                        </p:column>
+                        <p:column headerText="Série">
+                            <h:outputText value="#{entity.serie}" />
+                        </p:column>
+                        <p:column headerText="Repetição">
+                            <h:outputText value="#{entity.repeticao}" />
+                        </p:column>
+                        <p:column headerText="Carga">
+                            <h:outputText value="#{entity.carga}" />
+                        </p:column>
+                        <p:column headerText="Intervalo">
+                            <h:outputText value="#{entity.intervalo}" />
+                        </p:column>
+                        <p:column headerText="Ações" width="7%">
+                            <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('execucaoEdit').show();" title="Editar">
+                                <f:setPropertyActionListener value="#{entity}" target="#{execucaoController.execucaoSelecionado}" />
+                            </p:commandButton>
+                            <p:commandButton icon="ui-icon-close" action="#{execucaoController.delete()}" update=":formExecucao" title="Excluir">
+                                <p:confirm header="Confirmação" message="Deseja excluir?" icon="ui-icon-alert" />
+                                <f:setPropertyActionListener value="#{entity}" target="#{execucaoController.execucaoSelecionado}" />
+                            </p:commandButton>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+                <ui:include src="/pages/execucaoCadastrar.xhtml" />
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

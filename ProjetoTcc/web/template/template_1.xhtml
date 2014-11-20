@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Controle Virtual</title>
+        <style type="text/css">
+            .ui-widget {
+                font-size: 14px !important;
+                overflow: hidden;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+        <p:layout fullPage="true" id="page" >
+            <p:layoutUnit id="header" position="north" size="60" resizable="true">
+                <ui:include src="/template/basicheader_1.xhtml" />
+            </p:layoutUnit>
+
+            <p:layoutUnit id="content" position="center">
+                <ui:insert name="content" />
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>

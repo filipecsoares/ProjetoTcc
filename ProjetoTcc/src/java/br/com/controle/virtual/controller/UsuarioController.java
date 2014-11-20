@@ -126,7 +126,16 @@ public class UsuarioController implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login ou senha\n inválido", ""));
             return "login.xhtml";
         } else {
-            return "telaPrincipal.xhtml";
+            if (usuarioSelecionado.getTipo().getValor() == 1) {
+                return "execucaoListarUsuario.xhtml";
+            }else{
+                return "telaPrincipal.xhtml";
+            }
         }
+}
+
+public Boolean verificaPermissao() {
+        TipoUsuario tipo = usuarioSelecionado.getTipo();
+        return true;
     }
 }
