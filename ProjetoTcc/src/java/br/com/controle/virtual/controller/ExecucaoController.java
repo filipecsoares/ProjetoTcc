@@ -28,7 +28,7 @@ public class ExecucaoController implements Serializable {
     private List<Execucao> listExecucao;
     private List<GrupoMuscular> listGrupo;
     private List<Exercicio> listExercicio;
-    private Ficha ficha;
+    private static Ficha ficha;
     private GrupoMuscular grupo;
     private Exercicio exercicio;
 
