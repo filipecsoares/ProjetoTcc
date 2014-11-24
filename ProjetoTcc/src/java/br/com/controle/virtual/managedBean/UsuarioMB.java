@@ -40,4 +40,8 @@ public class UsuarioMB {
     public void delete(Usuario usuario) {
         dao.delete(usuario);
     }
+
+    public Usuario getFindLoginSenha(String login, String senha) {
+        return dao.getFindLoginSenha(login, senha);
+    }
 }
