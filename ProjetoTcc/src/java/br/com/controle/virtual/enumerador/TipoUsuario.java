@@ -7,15 +7,21 @@ package br.com.controle.virtual.enumerador;
 
 public enum TipoUsuario {
 
-    USUARIO(1), ADMINISTRADOR(2);
+    USUARIO(1, "Usuário"), ADMINISTRADOR(2, "Administrador");
 
     private final int valor;
+    private final String descricao;
 
-    TipoUsuario(int valor) {
+    TipoUsuario(int valor, String descricao) {
         this.valor = valor;
+        this.descricao = descricao;
     }
 
     public int getValor() {
         return this.valor;
+    }
+
+    public String getDescricao() {
+        return this.descricao;
     }
 }

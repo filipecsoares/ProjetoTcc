@@ -44,6 +44,9 @@ and open the template in the editor.
                         <p:column headerText="Login">
                             <h:outputText value="#{entity.login}" />
                         </p:column>
+                        <p:column headerText="Tipo de usuário">
+                            <h:outputText value="#{entity.tipo.descricao}" />
+                        </p:column>
                         <p:column headerText="Ações" width="7%">
                             <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('usuarioEdit').show();" title="Editar">
                                 <f:setPropertyActionListener value="#{entity}" target="#{usuarioController.usuarioSelecionado}" />

@@ -70,6 +70,10 @@ public class UsuarioController implements Serializable {
         this.usuarioSelecionado = usuarioSelecionado;
     }
 
+    public TipoUsuario[] getTipos() {
+        return TipoUsuario.values();
+    }
+
     public String pesquisaUsuarioPorNome() {
         if (usuarioSearch.getNome() != null) {
             listUsuario = mb.getFind(usuarioSearch.getNome());
@@ -128,13 +132,13 @@ public class UsuarioController implements Serializable {
         } else {
             if (usuarioSelecionado.getTipo().getValor() == 1) {
                 return "execucaoListarUsuario.xhtml";
-            }else{
+            } else {
                 return "telaPrincipal.xhtml";
             }
         }
-}
+    }
 
-public Boolean verificaPermissao() {
+    public Boolean verificaPermissao() {
         TipoUsuario tipo = usuarioSelecionado.getTipo();
         return true;
     }

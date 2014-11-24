@@ -11,13 +11,13 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-    <p:dialog id="dialog" header="Cadastrar Exercício" widgetVar="execucaoEdit" modal="true" height="500" width="750" showEffect="fade" hideEffect="explode" resizable="false" draggable="false" appendTo="@(body)">
+    <p:dialog id="dialog" header="Cadastrar Exercício" widgetVar="execucaoEdit" modal="true" height="350" width="700" showEffect="fade" hideEffect="explode" resizable="false" draggable="false" appendTo="@(body)">
         <h:form id="formEdit" prependId="false">
             <p:messages id="messages" autoUpdate="true" closable="true" />
             <p:outputPanel id="panelEdit" style="text-align: center;">
                 <p:panelGrid columns="4" columnClasses="label,value">
                     <h:outputText value="Grupo muscular:" />
-                    <p:selectOneMenu id="grupo" converter="GrupoConvert" value="#{execucaoController.grupo}" label="Grupo" style="width: 100%">
+                    <p:selectOneMenu id="grupo" converter="GrupoConvert" value="#{execucaoController.grupo}" required="true" label="Grupo" style="width: 100%">
                         <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
                         <f:selectItems value="#{execucaoController.listGrupo}" var="grupo" itemValue="#{grupo}" itemLabel="#{grupo.nome}" />
                         <f:ajax event="change" listener="#{execucaoController.atualizaCombo}" render="exercicio" />

@@ -51,6 +51,11 @@ public class Exercicio implements Serializable {
     public void setGrupo(GrupoMuscular grupo) {
         this.grupo = grupo;
     }
+    
+    @Override
+    public String toString() {
+        return this.nome;
+    }
 
     @Override
     public int hashCode() {

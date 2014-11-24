@@ -28,7 +28,8 @@ public class ExecucaoController implements Serializable {
     private List<Execucao> listExecucao;
     private List<GrupoMuscular> listGrupo;
     private List<Exercicio> listExercicio;
-    private static Ficha ficha;
+    private static Ficha fichaStatic;
+    private Ficha ficha;
     private GrupoMuscular grupo;
     private Exercicio exercicio;
 
@@ -39,6 +40,9 @@ public class ExecucaoController implements Serializable {
         execucaoSelecionado.setExercicio(new Exercicio());
         GrupoMuscularController grupoController = new GrupoMuscularController();
         listGrupo = grupoController.getListGrupoCombo();
+        if (fichaStatic != null) {
+            this.ficha = fichaStatic;
+        }
         listExercicio = new ArrayList<>();
         if (ficha != null && ficha.getId() != null) {
             listExecucao = mb.getFindByFicha(ficha.getId());
@@ -124,15 +128,27 @@ public class ExecucaoController implements Serializable {
     }
 
     public GrupoMuscular getGrupo() {
-        return grupo;
+        if (execucaoSelecionado != null && execucaoSelecionado.getExercicio() != null && execucaoSelecionado.getExercicio().getGrupo() != null) {
+            return execucaoSelecionado.getExercicio().getGrupo();
+        } else {
+            return grupo;
+        }
     }
 
     public void setGrupo(GrupoMuscular grupo) {
         this.grupo = grupo;
+        if (this.grupo != null && this.grupo.getId() != null) {
+            ExercicioController ex = new ExercicioController();
+            listExercicio = ex.findByGrupo(this.grupo.getId());
+        }
     }
 
     public Exercicio getExercicio() {
-        return exercicio;
+        if (execucaoSelecionado != null && execucaoSelecionado.getExercicio() != null && execucaoSelecionado.getExercicio().getId() != null) {
+            return execucaoSelecionado.getExercicio();
+        } else {
+            return exercicio;
+        }
     }
 
     public void setExercicio(Exercicio exercicio) {
@@ -144,12 +160,7 @@ public class ExecucaoController implements Serializable {
     }
 
     public String abrir(Ficha ficha) {
-        this.ficha = ficha;
-        listExecucao = mb.getFindByFicha(ficha.getId());
-        return "execucaoListar.xhtml";
-    }
-
-    public String abrir() {
+        this.fichaStatic = ficha;
         listExecucao = mb.getFindByFicha(ficha.getId());
         return "execucaoListar.xhtml";
     }
