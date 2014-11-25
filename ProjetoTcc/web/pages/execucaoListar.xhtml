@@ -26,7 +26,7 @@ and open the template in the editor.
                             <p:commandButton icon="ui-icon-search" value="Pesquisar" actionListener="#{execucaoController.pesquisaExecucaoPorGrupo}" update=":formExecucao :panelSearch" title="Pesquisar" />
                         </h:panelGrid>
                     </h:form>
-                    <p:commandButton update=":dialog :formEdit" value="Nova Exercício" icon="ui-icon-plus" oncomplete="PF('execucaoEdit').show();" style="position: absolute; top: 70px; right: 15px" title="Adicionar">
+                    <p:commandButton update=":dialog :formEdit" value="Novo Exercício" icon="ui-icon-plus" oncomplete="PF('execucaoEdit').show();" style="position: absolute; top: 70px; right: 15px" title="Adicionar">
                         <f:setPropertyActionListener value="#{execucaoController.novo}" target="#{execucaoController.execucaoSelecionado}" />
                     </p:commandButton>
                 </p:panel>

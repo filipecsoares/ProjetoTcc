@@ -40,25 +40,10 @@ public class ExecucaoController implements Serializable {
         execucaoSelecionado.setExercicio(new Exercicio());
         GrupoMuscularController grupoController = new GrupoMuscularController();
         listGrupo = grupoController.getListGrupoCombo();
+        listExercicio = new ArrayList<>();
         if (fichaStatic != null) {
             this.ficha = fichaStatic;
         }
-        listExercicio = new ArrayList<>();
-        if (ficha != null && ficha.getId() != null) {
-            listExecucao = mb.getFindByFicha(ficha.getId());
-        } else {
-            listExecucao = new ArrayList<>();
-        }
-    }
-
-    public ExecucaoController(Ficha ficha) {
-        mb = new ExecucaoMB();
-        execucaoSearch = new Execucao();
-        execucaoSelecionado = new Execucao();
-        execucaoSelecionado.setExercicio(new Exercicio());
-        GrupoMuscularController grupoController = new GrupoMuscularController();
-        listGrupo = grupoController.getListGrupoCombo();
-        listExercicio = new ArrayList<>();
         if (ficha != null && ficha.getId() != null) {
             listExecucao = mb.getFindByFicha(ficha.getId());
         } else {
@@ -129,26 +114,30 @@ public class ExecucaoController implements Serializable {
 
     public GrupoMuscular getGrupo() {
         if (execucaoSelecionado != null && execucaoSelecionado.getExercicio() != null && execucaoSelecionado.getExercicio().getGrupo() != null) {
+            ExercicioController ex = new ExercicioController();
+            listExercicio = ex.findByGrupo(execucaoSelecionado.getExercicio().getGrupo().getId());
             return execucaoSelecionado.getExercicio().getGrupo();
         } else {
+            if (grupo == null || grupo.getId() == null) {
+                listExercicio = new ArrayList<>();
+            }
             return grupo;
         }
     }
 
     public void setGrupo(GrupoMuscular grupo) {
         this.grupo = grupo;
-        if (this.grupo != null && this.grupo.getId() != null) {
-            ExercicioController ex = new ExercicioController();
-            listExercicio = ex.findByGrupo(this.grupo.getId());
-        }
     }
 
     public Exercicio getExercicio() {
         if (execucaoSelecionado != null && execucaoSelecionado.getExercicio() != null && execucaoSelecionado.getExercicio().getId() != null) {
-            return execucaoSelecionado.getExercicio();
-        } else {
-            return exercicio;
+            if (execucaoSelecionado.getExercicio().getGrupo() != null) {
+                ExercicioController ex = new ExercicioController();
+                listExercicio = ex.findByGrupo(execucaoSelecionado.getExercicio().getGrupo().getId());
+            }
+            exercicio = execucaoSelecionado.getExercicio();
         }
+        return exercicio;
     }
 
     public void setExercicio(Exercicio exercicio) {

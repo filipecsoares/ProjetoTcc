@@ -6,6 +6,7 @@ import br.com.controle.virtual.managedBean.ExercicioMB;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -26,6 +27,10 @@ public class ExercicioController implements Serializable {
 
     public ExercicioController() {
         mb = new ExercicioMB();
+    }
+
+    @PostConstruct
+    public void init() {
         exercicioSearch = new Exercicio();
         listExercicio = mb.getListFind();
         GrupoMuscularController grupoController = new GrupoMuscularController();
