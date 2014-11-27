@@ -1,20 +1,21 @@
 package br.com.controle.virtual.controller;
 
+import br.com.controle.virtual.entity.Execucao;
 import br.com.controle.virtual.entity.Ficha;
 import br.com.controle.virtual.entity.Usuario;
+import br.com.controle.virtual.managedBean.ExecucaoMB;
 import br.com.controle.virtual.managedBean.FichaMB;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 @ManagedBean(name = "fichaController")
 @SessionScoped
-@ViewScoped
 public class FichaController implements Serializable {
 
     private FichaMB mb;
@@ -23,6 +24,7 @@ public class FichaController implements Serializable {
     private Ficha fichaSelecionada;
     private List<Ficha> listFicha;
     private List<Usuario> listUsuario;
+    private List<Execucao> listExecucao;
 
     public FichaController() {
         mb = new FichaMB();
@@ -73,6 +75,12 @@ public class FichaController implements Serializable {
 
     public void setFichaSelecionada(Ficha fichaSelecionada) {
         this.fichaSelecionada = fichaSelecionada;
+        if (fichaSelecionada != null && fichaSelecionada.getId() != null) {
+            ExecucaoMB emb = new ExecucaoMB();
+            listExecucao = emb.getFindByFicha(fichaSelecionada.getId());
+        } else {
+            listExecucao = new ArrayList<>();
+        }
     }
 
     public List<Usuario> getListUsuario() {
@@ -81,6 +89,22 @@ public class FichaController implements Serializable {
 
     public void setListUsuario(List<Usuario> listUsuario) {
         this.listUsuario = listUsuario;
+    }
+
+    public FichaMB getMb() {
+        return mb;
+    }
+
+    public void setMb(FichaMB mb) {
+        this.mb = mb;
+    }
+
+    public List<Execucao> getListExecucao() {
+        return listExecucao;
+    }
+
+    public void setListExecucao(List<Execucao> listExecucao) {
+        this.listExecucao = listExecucao;
     }
 
     public String pesquisaFichaPorUsuario() {
@@ -130,4 +154,5 @@ public class FichaController implements Serializable {
         }
         atualizaListaFicha();
     }
+
 }

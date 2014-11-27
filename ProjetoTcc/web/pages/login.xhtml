@@ -12,11 +12,16 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Login</title>
-
-        <link rel="stylesheet" type="text/css" href="css/teste.css"/>
+        <style>
+            #divCentralizada {
+                position: absolute;
+                left: 40%;
+                top:30%;
+            }
+        </style>
     </h:head>
     <h:body>
-        <div class="divCentralizada">
+        <div id="divCentralizada">
             <h:form id="formLogin">
                 <p:panel id="login">
                     <h:panelGrid id="idGrid" cellpadding="5">
