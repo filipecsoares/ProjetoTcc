@@ -36,6 +36,8 @@ public class Execucao implements Serializable {
     @ManyToOne
     @JoinColumn(name = "fk_ficha")
     private Ficha ficha;
+    @Column
+    private String sequencia;
 
     public Integer getId() {
         return id;
@@ -91,6 +93,14 @@ public class Execucao implements Serializable {
 
     public void setFicha(Ficha ficha) {
         this.ficha = ficha;
+    }
+
+    public String getSequencia() {
+        return sequencia;
+    }
+
+    public void setSequencia(String sequencia) {
+        this.sequencia = sequencia;
     }
 
 }

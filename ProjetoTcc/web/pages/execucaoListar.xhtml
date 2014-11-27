@@ -51,6 +51,9 @@ and open the template in the editor.
                         <p:column headerText="Intervalo">
                             <h:outputText value="#{entity.intervalo}" />
                         </p:column>
+                        <p:column headerText="Sequência">
+                            <h:outputText value="#{entity.sequencia}" style="color: red; font-weight: bold"/>
+                        </p:column>
                         <p:column headerText="Ações" width="7%">
                             <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('execucaoEdit').show();" title="Editar">
                                 <f:setPropertyActionListener value="#{entity}" target="#{execucaoController.execucaoSelecionado}" />

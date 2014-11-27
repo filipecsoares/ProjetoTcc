@@ -12,14 +12,12 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 
 @ManagedBean(name = "execucaoController")
 @SessionScoped
-@ViewScoped
 public class ExecucaoController implements Serializable {
 
     private ExecucaoMB mb;
