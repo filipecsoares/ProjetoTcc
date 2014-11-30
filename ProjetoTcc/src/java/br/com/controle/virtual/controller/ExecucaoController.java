@@ -41,6 +41,8 @@ public class ExecucaoController implements Serializable {
         listExercicio = new ArrayList<>();
         if (fichaStatic != null) {
             this.ficha = fichaStatic;
+        }else{
+            ficha = new Ficha();
         }
         if (ficha != null && ficha.getId() != null) {
             listExecucao = mb.getFindByFicha(ficha.getId());
