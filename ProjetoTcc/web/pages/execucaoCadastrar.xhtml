@@ -37,7 +37,7 @@ and open the template in the editor.
                     <h:inputText value="#{execucaoController.execucaoSelecionado.intervalo}" />
                     <h:outputText value="Sequência:" />
                     <h:inputText value="#{execucaoController.execucaoSelecionado.sequencia}" />
-                </p:panelGrid>
+                </p:panelGrid><br/>
                 <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{execucaoController.saveOrUpdate()}" update=":formExecucao :formEdit @this" title="Salvar" />
             </p:outputPanel>
         </h:form>
