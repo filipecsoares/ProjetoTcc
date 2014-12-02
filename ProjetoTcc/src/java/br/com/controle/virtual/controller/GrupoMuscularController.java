@@ -7,11 +7,11 @@ import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 @ManagedBean(name = "grupoController")
-@SessionScoped
+@ViewScoped
 public class GrupoMuscularController implements Serializable {
 
     private GrupoMuscularMB mb;
@@ -64,7 +64,7 @@ public class GrupoMuscularController implements Serializable {
     public void setListGrupo(List<GrupoMuscular> listGrupo) {
         this.listGrupo = listGrupo;
     }
-    
+
     public List<GrupoMuscular> getListGrupoCombo() {
         return mb.getListFind();
     }
@@ -79,8 +79,8 @@ public class GrupoMuscularController implements Serializable {
     public void atualizaListaGrupo() {
         listGrupo = mb.getListFind();
     }
-    
-    public List<GrupoMuscular> listGrupo(){
+
+    public List<GrupoMuscular> listGrupo() {
         return mb.getListFind();
     }
 

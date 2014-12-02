@@ -6,22 +6,43 @@
 package br.com.controle.virtual.controller;
 
 import br.com.controle.virtual.entity.Usuario;
+import br.com.controle.virtual.enumerador.TipoUsuario;
+import br.com.controle.virtual.managedBean.UsuarioMB;
 import java.io.Serializable;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean(name = "loginController")
 @SessionScoped
 public class LoginController implements Serializable {
 
     private Usuario usuario;
+    private UsuarioMB mb;
 
     public LoginController() {
         usuario = new Usuario();
+        mb = new UsuarioMB();
     }
 
-    public void getEntrar() {
-        System.out.println("Valida login!");
+    public String verificaLoginSenha() {
+        usuario = mb.getFindLoginSenha(usuario.getLogin(), usuario.getSenha());
+        if (usuario == null) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login ou senha\n inválido", ""));
+            return "login.xhtml";
+        } else {
+            return "telaPrincipal.xhtml";
+        }
+    }
+
+    public Boolean getTemPermissao() {
+        if (usuario != null && usuario.getTipo() != null) {
+            if (usuario.getTipo() == TipoUsuario.ADMINISTRADOR) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Usuario getUsuario() {

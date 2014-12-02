@@ -8,11 +8,11 @@ import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 @ManagedBean(name = "usuarioController")
-@SessionScoped
+@ViewScoped
 public class UsuarioController implements Serializable {
 
     private UsuarioMB mb;
@@ -120,24 +120,5 @@ public class UsuarioController implements Serializable {
             update();
         }
         atualizaListaUsuario();
-    }
-
-    public String verificaLoginSenha() {
-        usuarioSelecionado = mb.getFindLoginSenha(usuarioSelecionado.getLogin(), usuarioSelecionado.getSenha());
-        if (usuarioSelecionado == null) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login ou senha\n inválido", ""));
-            return "login.xhtml";
-        } else {
-            if (usuarioSelecionado.getTipo().getValor() == 1) {
-                return "execucaoListarUsuario.xhtml";
-            } else {
-                return "telaPrincipal.xhtml";
-            }
-        }
-    }
-
-    public Boolean verificaPermissao() {
-        TipoUsuario tipo = usuarioSelecionado.getTipo();
-        return true;
     }
 }

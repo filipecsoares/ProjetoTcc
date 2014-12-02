@@ -50,7 +50,10 @@ and open the template in the editor.
                             <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('fichaEdit').show();" title="Editar">
                                 <f:setPropertyActionListener value="#{entity}" target="#{fichaController.fichaSelecionada}" />
                             </p:commandButton>
-                            <p:commandButton icon="ui-icon-plusthick" title="Abrir Exercícios" action="#{execucaoController.abrir(entity)}" />
+                            <p:commandButton icon="ui-icon-plusthick" title="Abrir Execução" action="#{execucaoController.abrir(entity)}" />
+                            <p:commandButton update=":dialogView" icon="ui-icon-document" oncomplete="PF('fichaView').show();" title="Visualizar ficha">
+                                <f:setPropertyActionListener value="#{entity}" target="#{fichaController.fichaSelecionada}" />
+                            </p:commandButton>
                             <p:commandButton icon="ui-icon-close" action="#{fichaController.delete()}" update=":formFicha" title="Excluir">
                                 <p:confirm header="Confirmação" message="Deseja excluir?" icon="ui-icon-alert" />
                                 <f:setPropertyActionListener value="#{entity}" target="#{fichaController.fichaSelecionada}" />
@@ -63,6 +66,7 @@ and open the template in the editor.
                     </p:dataTable>
                 </h:form>
                 <ui:include src="/pages/fichaCadastrar.xhtml" />
+                <ui:include src="/pages/fichaVisualizar.xhtml" />
             </ui:define>
         </ui:composition>
     </h:body>

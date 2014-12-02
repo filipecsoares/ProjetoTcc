@@ -14,8 +14,9 @@ and open the template in the editor.
         <ui:composition template="/template/template.xhtml">
             <ui:define name="content">
                 <p:panel header="Início">
-                    <h1>Seja bem-vindo ao Controle virtual de treino!</h1>
-                    <h2>Versão Alfa!</h2>
+                    <h1>Olá #{loginController.usuario.nome}!</h1>
+                    <h2>Seja bem-vindo ao Controle virtual de treino!</h2>
+                    <h3>Versão Alfa!</h3>
                 </p:panel>
             </ui:define>
         </ui:composition>

@@ -12,16 +12,16 @@
                 <p:menuitem value="Início" outcome="/pages/telaPrincipal" icon="ui-icon-home">
                     <f:param name="i" value="0" />
                 </p:menuitem>
-                <p:menuitem value="Usuário" outcome="/pages/usuarioListar" icon="ui-icon-person">
+                <p:menuitem value="Usuário" outcome="/pages/usuarioListar" icon="ui-icon-person" rendered="#{loginController.temPermissao}">
                     <f:param name="i" value="1" />
                 </p:menuitem>
                 <p:menuitem value="Ficha" outcome="/pages/fichaListar" icon="ui-icon-note">
                     <f:param name="i" value="2" />
                 </p:menuitem>
-                <p:menuitem value="Grupo Muscular" outcome="/pages/grupoMuscularListar" icon="ui-icon-wrench">
+                <p:menuitem value="Grupo Muscular" outcome="/pages/grupoMuscularListar" icon="ui-icon-wrench" rendered="#{loginController.temPermissao}">
                     <f:param name="i" value="3" />
                 </p:menuitem>
-                <p:menuitem value="Exercício" outcome="/pages/exercicioListar" icon="ui-icon-wrench">
+                <p:menuitem value="Exercício" outcome="/pages/exercicioListar" icon="ui-icon-wrench" rendered="#{loginController.temPermissao}">
                     <f:param name="i" value="4" />
                 </p:menuitem>
                 <p:menuitem value="Sair" outcome="/pages/login" icon="ui-icon-close">
