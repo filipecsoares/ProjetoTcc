@@ -22,7 +22,9 @@ public class FichaDAO extends GenericDAO<Long, Ficha> {
         factory = Persistence.createEntityManagerFactory("controlevirtual");
         entityManager = factory.createEntityManager();
         Session session = (Session) entityManager.getDelegate();
-        list = session.createCriteria(Ficha.class).add(Restrictions.ilike("usuario.nome", nome, MatchMode.ANYWHERE)).list();
+        list = session.createCriteria(Ficha.class)
+                .createAlias("usuario", "usuario")
+                .add(Restrictions.ilike("usuario.nome", nome, MatchMode.ANYWHERE)).list();
         entityManager.close();
         factory.close();
         return list;
