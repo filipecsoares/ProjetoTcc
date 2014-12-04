@@ -200,6 +200,10 @@ public class ExecucaoController implements Serializable {
     }
 
     public void pesquisaExecucaoPorGrupo() {
-        listExecucao = mb.getFindByGrupo(grupo.getId(), ficha.getId());
+        if (grupo != null && grupo.getId() != null && !grupo.getId().equals(0)) {
+            listExecucao = mb.getFindByGrupo(grupo.getId(), ficha.getId());
+        } else {
+            listExecucao = mb.getFindByFicha(ficha.getId());
+        }
     }
 }
