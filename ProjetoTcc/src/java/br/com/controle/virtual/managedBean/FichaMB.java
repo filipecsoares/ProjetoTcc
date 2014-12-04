@@ -32,6 +32,11 @@ public class FichaMB {
         return lista;
     }
 
+    public List<Ficha> getFind(Integer fkUsuario) {
+        List<Ficha> lista = dao.find(fkUsuario);
+        return lista;
+    }
+
     public List<Ficha> getFindComplete(String nome) {
         List<Ficha> lista = dao.findComplete(nome);
         return lista;

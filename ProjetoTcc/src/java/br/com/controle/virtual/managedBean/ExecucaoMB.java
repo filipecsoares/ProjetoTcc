@@ -31,9 +31,14 @@ public class ExecucaoMB {
         List<Execucao> lista = dao.find(nome);
         return lista;
     }
-    
+
     public List<Execucao> getFindByFicha(Integer fkFicha) {
         List<Execucao> lista = dao.findByFicha(fkFicha);
+        return lista;
+    }
+
+    public List<Execucao> getFindByGrupo(Integer fkGrupo, Integer fkFicha) {
+        List<Execucao> lista = dao.findByGrupo(fkGrupo, fkFicha);
         return lista;
     }
 

@@ -19,6 +19,7 @@ import javax.faces.context.FacesContext;
 public class LoginController implements Serializable {
 
     private Usuario usuario;
+    private static Usuario usuarioLogado;
     private UsuarioMB mb;
 
     public LoginController() {
@@ -28,6 +29,7 @@ public class LoginController implements Serializable {
 
     public String verificaLoginSenha() {
         usuario = mb.getFindLoginSenha(usuario.getLogin(), usuario.getSenha());
+        usuarioLogado = usuario;
         if (usuario == null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login ou senha\n inválido", ""));
             return "login.xhtml";
@@ -51,6 +53,11 @@ public class LoginController implements Serializable {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+        usuarioLogado = usuario;
+    }
+
+    public static Usuario usuarioLogado() {
+        return usuarioLogado;
     }
 
     public String getLogin() {

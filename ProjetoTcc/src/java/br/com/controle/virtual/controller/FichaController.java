@@ -3,6 +3,7 @@ package br.com.controle.virtual.controller;
 import br.com.controle.virtual.entity.Execucao;
 import br.com.controle.virtual.entity.Ficha;
 import br.com.controle.virtual.entity.Usuario;
+import br.com.controle.virtual.enumerador.TipoUsuario;
 import br.com.controle.virtual.managedBean.ExecucaoMB;
 import br.com.controle.virtual.managedBean.FichaMB;
 import java.io.Serializable;
@@ -25,6 +26,7 @@ public class FichaController implements Serializable {
     private List<Ficha> listFicha;
     private List<Usuario> listUsuario;
     private List<Execucao> listExecucao;
+    private Usuario usuarioLogado;
 
     public FichaController() {
         mb = new FichaMB();
@@ -32,7 +34,12 @@ public class FichaController implements Serializable {
         fichaSearch.setUsuario(new Usuario());
         fichaSelecionada = new Ficha();
         fichaSelecionada.setUsuario(new Usuario());
-        listFicha = mb.getListFind();
+        usuarioLogado = LoginController.usuarioLogado();
+        if (usuarioLogado != null && usuarioLogado.getTipo() != null && usuarioLogado.getTipo().equals(TipoUsuario.USUARIO)) {
+            listFicha = mb.getFind(usuarioLogado.getId());
+        } else {
+            listFicha = mb.getListFind();
+        }
         UsuarioController usuario = new UsuarioController();
         listUsuario = usuario.getListUsuarioCombo();
     }

@@ -198,4 +198,8 @@ public class ExecucaoController implements Serializable {
         }
         atualizaListaExecucao();
     }
+
+    public void pesquisaExecucaoPorGrupo() {
+        listExecucao = mb.getFindByGrupo(grupo.getId(), ficha.getId());
+    }
 }

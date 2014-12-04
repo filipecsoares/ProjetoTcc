@@ -26,4 +26,18 @@ public class ExecucaoDAO extends GenericDAO<Long, Execucao> {
         factory.close();
         return list;
     }
+
+    public List<Execucao> findByGrupo(Integer fkGrupo, Integer fkFicha) {
+        List<Execucao> list;
+        factory = Persistence.createEntityManagerFactory("controlevirtual");
+        entityManager = factory.createEntityManager();
+        Session session = (Session) entityManager.getDelegate();
+        list = session.createCriteria(Execucao.class)
+                .createAlias("exercicio", "exercicio")
+                .createAlias("exercicio.grupo", "exercicio.grupo")
+                .add(Restrictions.and(Restrictions.eq("exercicio.grupo.id", fkGrupo), Restrictions.eq("ficha.id", fkFicha))).list();
+        entityManager.close();
+        factory.close();
+        return list;
+    }
 }

@@ -29,4 +29,17 @@ public class FichaDAO extends GenericDAO<Long, Ficha> {
         factory.close();
         return list;
     }
+
+    public List<Ficha> find(Integer fkUsuario) {
+        List<Ficha> list;
+        factory = Persistence.createEntityManagerFactory("controlevirtual");
+        entityManager = factory.createEntityManager();
+        Session session = (Session) entityManager.getDelegate();
+        list = session.createCriteria(Ficha.class)
+                .createAlias("usuario", "usuario")
+                .add(Restrictions.eq("usuario.id", fkUsuario)).list();
+        entityManager.close();
+        factory.close();
+        return list;
+    }
 }
