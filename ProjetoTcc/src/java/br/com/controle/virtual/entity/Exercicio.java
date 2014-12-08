@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name = "exercicio")
@@ -20,7 +22,7 @@ public class Exercicio implements Serializable {
     @Column
     private String nome;
 
-    @ManyToOne
+    @ManyToOne(cascade = javax.persistence.CascadeType.ALL)
     @JoinColumn(name = "fk_grupo")
     private GrupoMuscular grupo;
 

@@ -25,6 +25,9 @@ public class LoginController implements Serializable {
     public LoginController() {
         usuario = new Usuario();
         mb = new UsuarioMB();
+        if(usuarioLogado != null && usuarioLogado.getId() != null) {
+            usuario = usuarioLogado;
+        }
     }
 
     public String verificaLoginSenha() {

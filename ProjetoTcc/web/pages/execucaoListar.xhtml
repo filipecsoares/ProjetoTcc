@@ -32,7 +32,7 @@ and open the template in the editor.
                 </p:panel>
                 <h:form id="formExecucao" prependId="false">
                     <p:dataTable id="tabelaExecucao" var="entity" widgetVar="execucao" value="#{execucaoController.listExecucao}" paginator="true" paginatorPosition="bottom" 
-                                 rows="10">
+                                 rows="7">
                         <p:column headerText="Exercício">
                             <h:outputText value="#{entity.exercicio.nome}" />
                         </p:column>

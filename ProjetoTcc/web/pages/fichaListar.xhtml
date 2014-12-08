@@ -16,14 +16,15 @@ and open the template in the editor.
             <ui:define name="content">
                 <p:panel id="panelSearch" header="Ficha">
                     <h:form>
-                        <h:panelGrid id="panelGrid" columns="2">
+                        <h:panelGrid id="panelGrid" columns="2" rendered="#{loginController.temPermissao}">
                             <h:outputLabel value="Usuário" />
                             <p:spacer/>
                             <p:inputText title="Usuário" value="#{fichaController.fichaSearch.usuario.nome}" />
                             <p:commandButton icon="ui-icon-search" value="Pesquisar" actionListener="#{fichaController.pesquisaFichaPorUsuario}" update=":formFicha :panelSearch" title="Pesquisar" />
                         </h:panelGrid>
                     </h:form>
-                    <p:commandButton update=":dialog :formEdit" value="Nova Ficha" icon="ui-icon-plus" oncomplete="PF('fichaEdit').show();" style="position: absolute; top: 70px; right: 15px" title="Adicionar">
+                    <p:commandButton update=":dialog :formEdit" value="Nova Ficha" icon="ui-icon-plus" oncomplete="PF('fichaEdit').show();" style="position: absolute; top: 70px; right: 15px" title="Adicionar" 
+                                     rendered="#{loginController.temPermissao}">
                         <f:setPropertyActionListener value="#{fichaController.novo}" target="#{fichaController.fichaSelecionada}" />
                     </p:commandButton>
                 </p:panel>
@@ -47,14 +48,14 @@ and open the template in the editor.
                             </h:outputText>
                         </p:column>
                         <p:column headerText="Ações" width="140">
-                            <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('fichaEdit').show();" title="Editar">
+                            <p:commandButton update=":dialog" icon="ui-icon-pencil" oncomplete="PF('fichaEdit').show();" title="Editar" rendered="#{loginController.temPermissao}">
                                 <f:setPropertyActionListener value="#{entity}" target="#{fichaController.fichaSelecionada}" />
                             </p:commandButton>
-                            <p:commandButton icon="ui-icon-plusthick" title="Abrir Execução" action="#{execucaoController.abrir(entity)}" />
+                            <p:commandButton icon="ui-icon-plusthick" title="Abrir Execução" action="#{execucaoController.abrir(entity)}" rendered="#{loginController.temPermissao}"/>
                             <p:commandButton update=":dialogView" icon="ui-icon-document" oncomplete="PF('fichaView').show();" title="Visualizar ficha">
                                 <f:setPropertyActionListener value="#{entity}" target="#{fichaController.fichaSelecionada}" />
                             </p:commandButton>
-                            <p:commandButton icon="ui-icon-close" action="#{fichaController.delete()}" update=":formFicha" title="Excluir">
+                            <p:commandButton icon="ui-icon-close" action="#{fichaController.delete()}" update=":formFicha" title="Excluir" rendered="#{loginController.temPermissao}">
                                 <p:confirm header="Confirmação" message="Deseja excluir?" icon="ui-icon-alert" />
                                 <f:setPropertyActionListener value="#{entity}" target="#{fichaController.fichaSelecionada}" />
                             </p:commandButton>
