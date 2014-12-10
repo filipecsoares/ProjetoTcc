@@ -22,7 +22,7 @@ public class Exercicio implements Serializable {
     @Column
     private String nome;
 
-    @ManyToOne(cascade = javax.persistence.CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "fk_grupo")
     private GrupoMuscular grupo;
 
